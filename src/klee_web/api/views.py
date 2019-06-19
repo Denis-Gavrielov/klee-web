@@ -93,6 +93,7 @@ class JobViewSet(viewsets.ViewSet):
         args = request.data.get("run_configuration", {})
 
         # TODO: replace this call with RPC (requests.get ...)
+        # soft_time_limit = request.get('http://127.0.0.1:8000/api/v1/worker_config/timeout/')
         # data = {"code": code,
         #         "email": email,
         #         "args": args,

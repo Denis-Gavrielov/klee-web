@@ -3,9 +3,6 @@ import redis
 
 
 class WorkerConfig():
-    """
-    Change the settings for the redis queue within the 'klee_worker' namespace.
-    """
     NAMESPACE = 'klee_worker'
     MEMORY_UNIT = 'm'
 
@@ -33,4 +30,7 @@ class WorkerConfig():
             return value or default
 
     def set_config(self, key, value):
+        """
+        Change the settings for the redis queue within the 'klee_worker' namespace.
+        """
         self.r.set('{}:{}'.format(WorkerConfig.NAMESPACE, key), value)
