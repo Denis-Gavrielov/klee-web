@@ -85,6 +85,14 @@ class WorkerRunner():
         return s.strip()
 
     def run_with_docker(self, command, env=None):
+        """
+        Runs the actual command by spawning a new process which executes the docker run command.
+
+        Return:
+            The KLEE output message.
+
+        TODO: here need to have checks in place to kill runs that take too long.
+        """
         try:
             output = subprocess.check_output(
                 self.docker_command(env) + command,
