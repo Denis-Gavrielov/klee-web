@@ -1,5 +1,6 @@
 import datetime
 import json
+import requests
 
 from django.contrib import messages
 from django.urls import reverse
@@ -8,8 +9,8 @@ from django.shortcuts import render
 
 from .decorators import group_required
 from .forms import AdminConfigForm
-from worker.worker import celery
-from worker.worker_config import WorkerConfig
+# from worker.worker import celery
+# from worker.worker_config import WorkerConfig
 from . import usage_stats
 from . import klee_tasks
 
@@ -20,7 +21,7 @@ HUMAN_READABLE_FIELD_NAMES = {
     "memory_limit": "Memory Limit"
 }
 
-worker_configuration = WorkerConfig()
+# worker_configuration = WorkerConfig()
 
 
 @group_required("admin")
@@ -56,7 +57,10 @@ def worker_config(request):
             for conf in form.cleaned_data:
                 data = form.cleaned_data[conf]
                 if data or data == 0:
-                    worker_configuration.set_config(conf, data)
+                    # TODO: replace these
+                    requests.post('http://127.0.0.1:8000/api/v1/worker_config/set_config',
+                                  data={'conf': conf, 'data': data})
+                    # worker_configuration.set_config(conf, data)
                     updated.append(HUMAN_READABLE_FIELD_NAMES[conf])
 
             if updated:
@@ -64,9 +68,16 @@ def worker_config(request):
 
             return HttpResponseRedirect(reverse('control_panel:worker_config'))
     else:
-        timeout = worker_configuration.timeout
-        cpu_share = worker_configuration.cpu_share
-        memory_limit = worker_configuration.memory_limit
+        # TODO: replace these
+        timeout = requests.get('http://127.0.0.1:8000/api/v1/worker_config/timeout')
+        # timeout = worker_configuration.timeout
+
+        cpu_share = requests.get('http://127.0.0.1:8000/api/v1/worker_config/cpu_share')
+        # cpu_share = worker_configuration.cpu_share
+
+        memory_limit = requests.get('http://127.0.0.1:8000/api/v1/worker_config/memory_limit')
+        # memory_limit = worker_configuration.memory_limit
+
         form = AdminConfigForm(
             initial={'cpu_share': cpu_share, 'memory_limit': memory_limit,
                      'timeout': timeout})
@@ -75,6 +86,11 @@ def worker_config(request):
 
 @group_required("admin")
 def worker_list(request):
+    # TODO: change this
+    # data = {'command': 'get_uptime_stats',
+    #         'reply': True}
+    # uptime_stats = requests.get('http://127.0.0.1:8000/api/v1/celery/control_broadcast',
+    # data=data).data
     uptime_stats = celery.control.broadcast('get_uptime_stats', reply=True)
     return render(
         request,

@@ -3,48 +3,78 @@ from copy import deepcopy
 import os
 import json
 import datetime
+import requests
 
 import redis
 
-from worker.worker import celery
+# from worker.worker import celery
 from frontend.models import Task
 
 
 def get_workers():
-    i = celery.control.inspect()
-    return i.registered().keys()
+    # req = requests.get('http://127.0.0.1:8000/api/v1/celery/get_workers')
+    # return req.data
 
+    # i = celery.control.inspect()
+    # return i.registered().keys()
+    pass
 
 # Returns tasks registered to workers.
 def registered_tasks(workers=None):
-    i = celery.control.inspect(workers)
-    tasks = i.registered() or {}
-    return remove_killed_tasks(tasks)
+    # req = request.get('http://127.0.0.1:8000/api/v1/celery/registered_tasks', data={'workers':
+    # workers)
+    # return req.data
+
+    # i = celery.control.inspect(workers)
+    # tasks = i.registered() or {}
+    # return remove_killed_tasks(tasks)
+    pass
 
 
 # Returns currently executing tasks.
 def active_tasks(workers=None):
-    i = celery.control.inspect(workers)
-    tasks = i.active() or {}
-    return populate_task_data(remove_killed_tasks(tasks))
+    # req = request.get('http://127.0.0.1:8000/api/v1/celery/activate_tasks', data={'workers':
+    # workers)
+    # return req.data
+
+    # i = celery.control.inspect(workers)
+    # tasks = i.active() or {}
+    # return populate_task_data(remove_killed_tasks(tasks))
+    pass
 
 
 def scheduled_tasks(workers=None):
-    i = celery.control.inspect(workers)
-    tasks = i.scheduled() or {}
-    return remove_killed_tasks(tasks)
+    # req = request.get('http://127.0.0.1:8000/api/v1/celery/scheduled_tasks', data={'workers':
+    # workers)
+    # return req.data
+
+    # i = celery.control.inspect(workers)
+    # tasks = i.scheduled() or {}
+    # return remove_killed_tasks(tasks)
+    pass
 
 
 def active_queues(workers=None):
-    i = celery.control.inspect(workers)
-    return i.active_queues()
+    # req = request.get('http://127.0.0.1:8000/api/v1/celery/active_queues', data={'workers':
+    # workers)
+    # return req.data
+
+    # i = celery.control.inspect(workers)
+    # return i.active_queues()
+    pass
 
 
 # Returns tasks taken off the queue by a worker, waiting to be executed.
 def reserved_tasks(workers=None):
-    i = celery.control.inspect(workers)
-    tasks = i.reserved() or {}
-    return remove_killed_tasks(tasks)
+    # req = request.get('http://127.0.0.1:8000/api/v1/celery/reserved_tasks', data={'workers':
+    # workers)
+    # return req.data
+
+    # i = celery.control.inspect(workers)
+    # tasks = i.reserved() or {}
+    # return remove_killed_tasks(tasks)
+
+    pass
 
 
 # Returns tasks in redis queue, not given to a worker.
@@ -61,8 +91,13 @@ def waiting_tasks():
 
 
 def revoked_tasks(workers=None):
-    i = celery.control.inspect(workers)
-    return i.revoked()
+    # req = request.get('http://127.0.0.1:8000/api/v1/celery/revoked_tasks', data={'workers':
+    # workers)
+    # return req.data
+
+    # i = celery.control.inspect(workers)
+    # return i.revoked()
+    pass
 
 
 def done_tasks():
@@ -124,9 +159,9 @@ def populate_completed_task(db_task):
 
 def kill_task(task_id):
     Task.objects.filter(task_id=task_id).delete()
-    celery.control.revoke(task_id, terminate=True, signal='SIGKILL')
+#     TODO: call API kill_task
 
-
+# TODO: remove as probably not needed anymore
 def remove_killed_tasks(tasks, workers=None):
     revoked = revoked_tasks(workers).values()
     set_revoked = set(itertools.chain.from_iterable(revoked))

@@ -8,14 +8,14 @@ klee_web references to worker:
         here only the timeout is needed -> so can get the timeout as an
         api GET.
 
-* control_panel/klee_task.py
+* control_panel/klee_task.py   DONE
     from worker.worker import celery
         instance of celery -> replace this entirely with api GET calls.
 
-* control_panel/views.py
-    from worker.worker import celery
+* control_panel/views.py   DONE
+    from worker.worker import celery   DONE
         additional stats that need to be exposed via GET
-    from worker.worker_config import WorkerConfig
+    from worker.worker_config import WorkerConfig   DONE
         should be able to do POST and GET, given that the WorkerConfig class
         just adapts the global redis queue
 
