@@ -2,7 +2,7 @@ import os
 import glob
 
 from gcovparse import gcovparse
-from worker.processor.base import BaseProcessor
+from processor.base import BaseProcessor
 
 
 class CoverageProcessor(BaseProcessor):

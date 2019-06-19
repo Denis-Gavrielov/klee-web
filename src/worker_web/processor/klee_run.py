@@ -1,4 +1,4 @@
-from worker.processor.base import BaseProcessor
+from processor.base import BaseProcessor
 
 
 class KleeRunProcessor(BaseProcessor):

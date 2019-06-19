@@ -92,6 +92,13 @@ class JobViewSet(viewsets.ViewSet):
         email = request.data.get("email")
         args = request.data.get("run_configuration", {})
 
+        # TODO: replace this call with RPC (requests.get ...)
+        # data = {"code": code,
+        #         "email": email,
+        #         "args": args,
+        #         "klee_args": request.build_absolute_uri(reverse('jobs_notify')),
+        #         "soft_time_limit": worker_config.timeout}
+        # task = requests.post('http://127.0.0.1:8000/api/v1/worker_submit_code/', data=data)
         task = submit_code.apply_async(
             [code,
              email,

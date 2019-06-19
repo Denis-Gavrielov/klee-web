@@ -1,7 +1,7 @@
 import linecache
 import os
 import re
-from worker.processor.base import BaseProcessor
+from processor.base import BaseProcessor
 
 
 class FailedTestProcessor(BaseProcessor):

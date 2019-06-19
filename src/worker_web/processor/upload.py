@@ -1,9 +1,9 @@
 import os
 import subprocess
-from worker.processor.base import BaseProcessor
+from processor.base import BaseProcessor
 
-from worker.storage.dummy_storage import DummyStorage
-from worker.storage.s3_storage import S3Storage
+from storage.dummy_storage import DummyStorage
+from storage.s3_storage import S3Storage
 
 DEVELOPMENT = os.environ.get('DEVELOPMENT') is not None
 

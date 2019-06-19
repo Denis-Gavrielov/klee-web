@@ -7,15 +7,15 @@ import tempfile
 
 import requests
 
-from src.worker_web.mailer import DummyMailer
-from src.worker_web.mailer import MailgunMailer
+from mailer.dummy_mailer import DummyMailer
+from mailer.mailgun_mailer import MailgunMailer
 from .decorators import notify_on_entry
 from .exceptions import KleeRunFailure
-from .processor.coverage import CoverageProcessor
-from .processor.failed_test import FailedTestProcessor
-from .processor.klee_run import KleeRunProcessor
-from .processor.stats import StatsProcessor
-from .processor.upload import UploadProcessor
+from processor.coverage import CoverageProcessor
+from processor.failed_test import FailedTestProcessor
+from processor.klee_run import KleeRunProcessor
+from processor.stats import StatsProcessor
+from processor.upload import UploadProcessor
 from .worker_config import WorkerConfig
 
 ANSI_ESCAPE_PATTERN = re.compile(r'\x1b[^m]*m')
