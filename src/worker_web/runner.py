@@ -1,24 +1,22 @@
+import codecs
 import json
+import os
 import re
 import subprocess
 import tempfile
-import os
-import codecs
 
 import requests
 
-from .exceptions import KleeRunFailure
+from src.worker_web.mailer import DummyMailer
+from src.worker_web.mailer import MailgunMailer
 from .decorators import notify_on_entry
-from .worker_config import WorkerConfig
-
-from .mailer.mailgun_mailer import MailgunMailer
-from .mailer.dummy_mailer import DummyMailer
-
-from .processor.failed_test import FailedTestProcessor
+from .exceptions import KleeRunFailure
 from .processor.coverage import CoverageProcessor
-from .processor.upload import UploadProcessor
+from .processor.failed_test import FailedTestProcessor
 from .processor.klee_run import KleeRunProcessor
 from .processor.stats import StatsProcessor
+from .processor.upload import UploadProcessor
+from .worker_config import WorkerConfig
 
 ANSI_ESCAPE_PATTERN = re.compile(r'\x1b[^m]*m')
 LXC_MESSAGE_PATTERN = re.compile(r'lxc-start: .*')
