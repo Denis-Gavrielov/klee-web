@@ -1,5 +1,6 @@
 import datetime
 from django.urls import reverse
+import requests
 
 from rest_framework import viewsets, status
 from rest_framework.generics import get_object_or_404
@@ -13,10 +14,6 @@ from api.helpers import get_client_ip
 from api.permissions import IsOwnerOrReadOnly
 from api.serializers import ProjectSerializer, FileSerializer
 from frontend.models import Project, File, Task
-
-from worker.worker import submit_code
-from worker.worker_config import WorkerConfig
-
 
 class ProjectViewSet(viewsets.ModelViewSet):
     permission_classes = (IsOwnerOrReadOnly,)
@@ -84,7 +81,6 @@ class FileViewSet(viewsets.ViewSet):
 class JobViewSet(viewsets.ViewSet):
     @list_route(methods=['POST'])
     def submit(self, request):
-        worker_config = WorkerConfig()
         user = 'Guest'
         if request.user.is_authenticated:
             user = request.user
@@ -92,26 +88,20 @@ class JobViewSet(viewsets.ViewSet):
         email = request.data.get("email")
         args = request.data.get("run_configuration", {})
 
-        # TODO: replace this call with RPC (requests.get ...)
-        # soft_time_limit = request.get('http://127.0.0.1:8000/api/v1/worker_config/timeout/')
-        # data = {"code": code,
-        #         "email": email,
-        #         "args": args,
-        #         "klee_args": request.build_absolute_uri(reverse('jobs_notify')),
-        #         "soft_time_limit": worker_config.timeout}
-        # task = requests.post('http://127.0.0.1:8000/api/v1/worker_submit_code/', data=data)
-        task = submit_code.apply_async(
-            [code,
-             email,
-             args,
-             request.build_absolute_uri(reverse('jobs_notify'))],
-            soft_time_limit=worker_config.timeout
-        )
+        # TODO: replace this soft_time_limit with an instruction to do that on the other server,
+        # instead of having two GET requests.
+        soft_time_limit = requests.get('http://127.0.0.1:8000/api/v1/worker_config/timeout/')
+        data = {"code": code,
+                "email": email,
+                "args": args,
+                "klee_args": request.build_absolute_uri(reverse('jobs_notify')),
+                "soft_time_limit": soft_time_limit}
+        task_id = requests.post('http://127.0.0.1:8000/api/v1/worker_submit_code/', data=data)
 
-        Task.objects.create(task_id=task.task_id,
+        Task.objects.create(task_id=task_id,
                             email_address=email,
                             ip_address=get_client_ip(request),
                             created_at=datetime.datetime.now(),
                             user=user)
 
-        return Response({'task_id': task.task_id})
+        return Response({'task_id': task_id})

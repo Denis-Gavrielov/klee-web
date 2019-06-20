@@ -28,3 +28,7 @@ get quite a lot of configs from environmental variables.
 
 
 article on running docker commands from within a container: https://forums.docker.com/t/how-can-i-run-docker-command-inside-a-docker-container/337/3
+
+
+TODO: ansible worker
+* start up the server on ansible worker
