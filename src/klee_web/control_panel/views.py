@@ -69,13 +69,13 @@ def worker_config(request):
             return HttpResponseRedirect(reverse('control_panel:worker_config'))
     else:
         # TODO: replace these
-        timeout = requests.get('http://127.0.0.1:8000/api/v1/worker_config/timeout')
+        timeout = requests.get('http://127.0.0.1:8000/api/v1/worker_config/timeout').text
         # timeout = worker_configuration.timeout
 
-        cpu_share = requests.get('http://127.0.0.1:8000/api/v1/worker_config/cpu_share')
+        cpu_share = requests.get('http://127.0.0.1:8000/api/v1/worker_config/cpu_share').text
         # cpu_share = worker_configuration.cpu_share
 
-        memory_limit = requests.get('http://127.0.0.1:8000/api/v1/worker_config/memory_limit')
+        memory_limit = requests.get('http://127.0.0.1:8000/api/v1/worker_config/memory_limit').text
         # memory_limit = worker_configuration.memory_limit
 
         form = AdminConfigForm(
@@ -87,11 +87,11 @@ def worker_config(request):
 @group_required("admin")
 def worker_list(request):
     # TODO: change this
-    # data = {'command': 'get_uptime_stats',
-    #         'reply': True}
-    # uptime_stats = requests.get('http://127.0.0.1:8000/api/v1/celery/control_broadcast',
-    # data=data).data
-    uptime_stats = celery.control.broadcast('get_uptime_stats', reply=True)
+    data = {'command': 'get_uptime_stats',
+            'reply': True}
+    uptime_stats = requests.get('http://127.0.0.1:8000/api/v1/celery/control_broadcast',
+    data=data).text
+    # uptime_stats = celery.control.broadcast('get_uptime_stats', reply=True)
     return render(
         request,
         "control_panel/worker_list.html",

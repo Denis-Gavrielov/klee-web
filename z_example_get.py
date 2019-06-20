@@ -15,65 +15,18 @@ from time import time
 # task = requests.post('http://127.0.0.1:8000/api/v1/worker_submit_code/', data=data)
 # print(task.content)
 
-
-#
-# {"changed": true,
-#                                "cmd": ". /src/web/env/bin/activate && . /etc/profile.d/klee-web-environment.sh && cd /titb/src/klee_web && python manage.py migrate --noinput",
-#                                "delta": "0:00:00.916720", "end": "2019-06-19 12:35:57.326678",
-#                                "msg": "non-zero return code", "rc": 1,
-#                                "start": "2019-06-19 12:35:56.409958",
-#                                "stderr": "Traceback (most recent call last):\n  File \"manage.py\", line 10, in <module>\n    execute_from_command_line(sys.argv)\n  File \"/src/web/env/lib/python3.5/site-packages/django/core/management/__init__.py\", line 381, in execute_from_command_line\n    utility.execute()\n  File \"/src/web/env/lib/python3.5/site-packages/django/core/management/__init__.py\", line 375, in execute\n    self.fetch_command(subcommand).run_from_argv(self.argv)\n  File \"/src/web/env/lib/python3.5/site-packages/django/core/management/base.py\", line 323, in run_from_argv\n    self.execute(*args, **cmd_options)\n  File \"/src/web/env/lib/python3.5/site-packages/django/core/management/base.py\", line 361, in execute\n    self.check()\n  File \"/src/web/env/lib/python3.5/site-packages/django/core/management/base.py\", line 390, in check\n    include_deployment_checks=include_deployment_checks,\n  File \"/src/web/env/lib/python3.5/site-packages/django/core/management/commands/migrate.py\", line 65, in _run_checks\n    issues.extend(super()._run_checks(**kwargs))\n  File \"/src/web/env/lib/python3.5/site-packages/django/core/management/base.py\", line 377, in _run_checks\n    return checks.run_checks(**kwargs)\n  File \"/src/web/env/lib/python3.5/site-packages/django/core/checks/registry.py\", line 72, in run_checks\n    new_errors = check(app_configs=app_configs)\n  File \"/src/web/env/lib/python3.5/site-packages/django/core/checks/urls.py\", line 40, in check_url_namespaces_unique\n    all_namespaces = _load_all_namespaces(resolver)\n  File \"/src/web/env/lib/python3.5/site-packages/django/core/checks/urls.py\", line 57, in _load_all_namespaces\n    url_patterns = getattr(resolver, 'url_patterns', [])\n  File \"/src/web/env/lib/python3.5/site-packages/django/utils/functional.py\", line 80, in __get__\n    res = instance.__dict__[self.name] = self.func(instance)\n  File \"/src/web/env/lib/python3.5/site-packages/django/urls/resolvers.py\", line 579, in url_patterns\n    patterns = getattr(self.urlconf_module, \"urlpatterns\", self.urlconf_module)\n  File \"/src/web/env/lib/python3.5/site-packages/django/utils/functional.py\", line 80, in __get__\n    res = instance.__dict__[self.name] = self.func(instance)\n  File \"/src/web/env/lib/python3.5/site-packages/django/urls/resolvers.py\", line 572, in urlconf_module\n    return import_module(self.urlconf_name)\n  File \"/src/web/env/lib/python3.5/importlib/__init__.py\", line 126, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n  File \"<frozen importlib._bootstrap>\", line 986, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 969, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 958, in _find_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 673, in _load_unlocked\n  File \"<frozen importlib._bootstrap_external>\", line 665, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 222, in _call_with_frames_removed\n  File \"/titb/src/klee_web/urls.py\", line 4, in <module>\n    import api\n  File \"/titb/src/klee_web/api/__init__.py\", line 3, in <module>\n    from .views import ProjectViewSet, FileViewSet, JobViewSet\n  File \"/titb/src/klee_web/api/views.py\", line 17, in <module>\n    from worker.worker import submit_code\nImportError: No module named 'worker'",
-#                                "stderr_lines": ["Traceback (most recent call last):",
-#                                                 "  File \"manage.py\", line 10, in <module>",
-#                                                 "    execute_from_command_line(sys.argv)",
-#                                                 "  File \"/src/web/env/lib/python3.5/site-packages/django/core/management/__init__.py\", line 381, in execute_from_command_line",
-#                                                 "    utility.execute()",
-#                                                 "  File \"/src/web/env/lib/python3.5/site-packages/django/core/management/__init__.py\", line 375, in execute",
-#                                                 "    self.fetch_command(subcommand).run_from_argv(self.argv)",
-#                                                 "  File \"/src/web/env/lib/python3.5/site-packages/django/core/management/base.py\", line 323, in run_from_argv",
-#                                                 "    self.execute(*args, **cmd_options)",
-#                                                 "  File \"/src/web/env/lib/python3.5/site-packages/django/core/management/base.py\", line 361, in execute",
-#                                                 "    self.check()",
-#                                                 "  File \"/src/web/env/lib/python3.5/site-packages/django/core/management/base.py\", line 390, in check",
-#                                                 "    include_deployment_checks=include_deployment_checks,",
-#                                                 "  File \"/src/web/env/lib/python3.5/site-packages/django/core/management/commands/migrate.py\", line 65, in _run_checks",
-#                                                 "    issues.extend(super()._run_checks(**kwargs))",
-#                                                 "  File \"/src/web/env/lib/python3.5/site-packages/django/core/management/base.py\", line 377, in _run_checks",
-#                                                 "    return checks.run_checks(**kwargs)",
-#                                                 "  File \"/src/web/env/lib/python3.5/site-packages/django/core/checks/registry.py\", line 72, in run_checks",
-#                                                 "    new_errors = check(app_configs=app_configs)",
-#                                                 "  File \"/src/web/env/lib/python3.5/site-packages/django/core/checks/urls.py\", line 40, in check_url_namespaces_unique",
-#                                                 "    all_namespaces = _load_all_namespaces(resolver)",
-#                                                 "  File \"/src/web/env/lib/python3.5/site-packages/django/core/checks/urls.py\", line 57, in _load_all_namespaces",
-#                                                 "    url_patterns = getattr(resolver, 'url_patterns', [])",
-#                                                 "  File \"/src/web/env/lib/python3.5/site-packages/django/utils/functional.py\", line 80, in __get__",
-#                                                 "    res = instance.__dict__[self.name] = self.func(instance)",
-#                                                 "  File \"/src/web/env/lib/python3.5/site-packages/django/urls/resolvers.py\", line 579, in url_patterns",
-#                                                 "    patterns = getattr(self.urlconf_module, \"urlpatterns\", self.urlconf_module)",
-#                                                 "  File \"/src/web/env/lib/python3.5/site-packages/django/utils/functional.py\", line 80, in __get__",
-#                                                 "    res = instance.__dict__[self.name] = self.func(instance)",
-#                                                 "  File \"/src/web/env/lib/python3.5/site-packages/django/urls/resolvers.py\", line 572, in urlconf_module",
-#                                                 "    return import_module(self.urlconf_name)",
-#                                                 "  File \"/src/web/env/lib/python3.5/importlib/__init__.py\", line 126, in import_module",
-#                                                 "    return _bootstrap._gcd_import(name[level:], package, level)",
-#                                                 "  File \"<frozen importlib._bootstrap>\", line 986, in _gcd_import",
-#                                                 "  File \"<frozen importlib._bootstrap>\", line 969, in _find_and_load",
-#                                                 "  File \"<frozen importlib._bootstrap>\", line 958, in _find_and_load_unlocked",
-#                                                 "  File \"<frozen importlib._bootstrap>\", line 673, in _load_unlocked",
-#                                                 "  File \"<frozen importlib._bootstrap_external>\", line 665, in exec_module",
-#                                                 "  File \"<frozen importlib._bootstrap>\", line 222, in _call_with_frames_removed",
-#                                                 "  File \"/titb/src/klee_web/urls.py\", line 4, in <module>",
-#                                                 "    import api",
-#                                                 "  File \"/titb/src/klee_web/api/__init__.py\", line 3, in <module>",
-#                                                 "    from .views import ProjectViewSet, FileViewSet, JobViewSet",
-#                                                 "  File \"/titb/src/klee_web/api/views.py\", line 17, in <module>",
-#                                                 "    from worker.worker import submit_code",
-#                                                 "ImportError: No module named 'worker'"],
-#                                "stdout": "", "stdout_lines": []}
-
-from pprint import pprint
-pprint({'soft_time_limit': ['<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta '
-                           'http-equiv="content-type" content="text/html; charset=utf-8">\n  <title>Page not ', 'found at /api/v1/worker_config/timeout/</title>\n  <meta name="robots" content="NONE,NOARCHIVE">\n  <style type="text/css">\n    ht', 'ml * { padding:0; margin:0; }\n    body * { padding:10px 20px; }\n    body * * { padding:0; }\n    body { font:small sans-serif; ba', 'ckground:#eee; color:#000; }\n    body>div { border-bottom:1px solid #ddd; }\n    h1 { font-weight:normal; margin-bottom:.4em; }\n ', '   h1 span { font-size:60%; color:#666; font-weight:normal; }\n    table { border:none; border-collapse: collapse; width:100%; }\n', '    td, th { vertical-align:top; padding:2px 3px; }\n    th { width:12em; text-align:right; color:#666; padding-right:.5em; }\n   ', ' #info { background:#f6f6f6; }\n    #info ol { margin: 0.5em 4em; }\n    #info ol li { font-family: monospace; }\n    #summary { ba', 'ckground: #ffc; }\n    #explanation { background:#eee; border-bottom: 0px none; }\n  </style>\n</head>\n<body>\n  <div id="summary">\n', '    <h1>Page not found <span>(404)</span></h1>\n    <table class="meta">\n      <tr>\n        <th>Request Method:</th>\n        <td>', 'GET</td>\n      </tr>\n      <tr>\n        <th>Request URL:</th>\n        <td>http://127.0.0.1:8000/api/v1/worker_config/timeout/</t', 'd>\n      </tr>\n      \n    </table>\n  </div>\n  <div id="info">\n    \n      <p>\n      Using the URLconf defined in <code>worker_web', '.urls</code>,\n      Django tried these URL patterns, in this order:\n      </p>\n      <ol>\n        \n          <li>\n            \n ', '               admin/\n                \n            \n          </li>\n        \n          <li>\n            \n                api/v1/', '\n                \n            \n                it_works/\n                \n            \n          </li>\n        \n          <li>\n ', '           \n                api/v1/\n                \n            \n                worker_submit_code/\n                \n         ', '   \n          </li>\n        \n          <li>\n            \n                api/v1/\n                \n            \n                w', 'orker_config/timeout\n                \n            \n          </li>\n        \n          <li>\n            \n                api/v1/\n', '                \n            \n                worker_config/cpu_share\n                \n            \n          </li>\n        \n   ', '       <li>\n            \n                api/v1/\n                \n            \n                worker_config/memory_limit\n      ', '          \n            \n          </li>\n        \n          <li>\n            \n                api/v1/\n                \n          ', '  \n                worker_config/set_config\n                \n            \n          </li>\n        \n          <li>\n            \n ', '               api/v1/\n                \n            \n                celery/get_workers\n                \n            \n          ', '</li>\n        \n          <li>\n            \n                api/v1/\n                \n            \n                celery/register', 'ed_tasks\n                \n            \n          </li>\n        \n          <li>\n            \n                api/v1/\n            ', '    \n            \n                celery/active_tasks\n                \n            \n          </li>\n        \n          <li>\n    ', '        \n                api/v1/\n                \n            \n                celery/scheduled_tasks\n                \n         ', '   \n          </li>\n        \n          <li>\n            \n                api/v1/\n                \n            \n                c', 'elery/active_queues\n                \n            \n          </li>\n        \n          <li>\n            \n                api/v1/\n ', '               \n            \n                celery/reserved_tasks\n                \n            \n          </li>\n        \n      ', '    <li>\n            \n                api/v1/\n                \n            \n                celery/revoked_tasks\n               ', ' \n            \n          </li>\n        \n          <li>\n            \n                api/v1/\n                \n            \n      ', '          celery/control_broadcast\n                \n            \n          </li>\n        \n      </ol>\n      <p>\n        \n       ', ' The current path, <code>api/v1/worker_config/timeout/</code>, didn\'t match any of these.\n      </p>\n    \n  </div>\n\n  <div id="e', 'xplanation">\n    <p>\n      You\'re seeing this error because you have <code>DEBUG = True</code> in\n      your Django settings fil', 'e. Change that to <code>False</code>, and Django\n      will display a standard 404 page.\n    </p>\n  </div>\n</body>\n</html>\n'], 'klee_args': ['http://192.168.33.10/jobs/notify/'], 'code': ['/*\n * First KLEE tutorial: testing a small function\n * http://klee.github.io/tutorials/testing-function/\n */\n\n#include "klee/klee.h"\n\nint get_sign(int x) {\n\tif (x == 0)\n\t\treturn 0;\n\n\tif (x < 0)\n\t\treturn -1;\n\telse\n\t\treturn 1;\n}\n\nint main() {\n\tint a;\n\tklee_make_symbolic(&a, sizeof(a), "a");\n\treturn get_sign(a);\n}'], 'args': ['options', 'sym_args', 'sym_files', 'sym_in', 'arguments']})
-# . /src/web/env/bin/activate && . /etc/profile.d/klee-web-environment.sh && cd /titb/src/klee_web && python manage.py migrate --noinput
-#
 # source /src/worker/env/bin/activate
+
+"""/src/worker_web ... something something  run python manage.py runserver
+
+logs of worker and web: /src/worker/logs
+
+running celery worker -A worker_web.worker.worker from within the src folder works! 
+    so probably need to make sure that I run it from the right folder from the supervisor.
+    
+Now moved worker outside so need:
+    celery worker -A worker_web.worker
+
+
+"""
+

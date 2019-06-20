@@ -1,6 +1,6 @@
 import os
 import subprocess
-from processor.base import BaseProcessor
+from .base import BaseProcessor
 
 from storage.dummy_storage import DummyStorage
 from storage.s3_storage import S3Storage

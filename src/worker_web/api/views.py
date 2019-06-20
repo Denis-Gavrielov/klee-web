@@ -2,8 +2,8 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-from worker.worker import submit_code, celery
-from worker.worker_config import WorkerConfig
+from worker import submit_code, celery
+from worker_config import WorkerConfig
 from .klee_tasks import *
 
 @api_view()

@@ -6,7 +6,7 @@ import datetime
 
 import redis
 
-from worker.worker import celery
+from worker import celery
 # from frontend.models import Task
 
 # TODO: check if all functions are needed

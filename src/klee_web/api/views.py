@@ -1,6 +1,7 @@
 import datetime
 from django.urls import reverse
 import requests
+import sys # TODO delete
 
 from rest_framework import viewsets, status
 from rest_framework.generics import get_object_or_404
@@ -90,13 +91,15 @@ class JobViewSet(viewsets.ViewSet):
 
         # TODO: replace this soft_time_limit with an instruction to do that on the other server,
         # instead of having two GET requests.
-        soft_time_limit = requests.get('http://127.0.0.1:8000/api/v1/worker_config/timeout/')
+        soft_time_limit = requests.get('http://127.0.0.1:8000/api/v1/worker_config/timeout/').text
         data = {"code": code,
                 "email": email,
                 "args": args,
                 "klee_args": request.build_absolute_uri(reverse('jobs_notify')),
                 "soft_time_limit": soft_time_limit}
-        task_id = requests.post('http://127.0.0.1:8000/api/v1/worker_submit_code/', data=data)
+        task_id = requests.post('http://127.0.0.1:8000/api/v1/worker_submit_code/',
+                                data=data).text
+        print('\n soft_time_limit:', soft_time_limit, file=sys.stderr)
 
         Task.objects.create(task_id=task_id,
                             email_address=email,
