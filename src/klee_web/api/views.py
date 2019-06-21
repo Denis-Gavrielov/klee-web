@@ -99,7 +99,7 @@ class JobViewSet(viewsets.ViewSet):
                 "soft_time_limit": soft_time_limit}
         task_id = requests.post('http://127.0.0.1:8000/api/v1/worker_submit_code/',
                                 data=data).text
-        print('\n soft_time_limit:', soft_time_limit, file=sys.stderr)
+        print('\n TASK:', task_id, file=sys.stderr)
 
         Task.objects.create(task_id=task_id,
                             email_address=email,

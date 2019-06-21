@@ -11,6 +11,8 @@ class KleeRunProcessor(BaseProcessor):
     def generate_arguments(self):
         klee_args = self.args
         result = []
+        # NOTE: now it fails here, because klee_args is a string.
+        print('KLEE_ARGS:', klee_args)
         sym_files = klee_args.get('sym_files')
         if sym_files:
             num_files = sym_files.get('num')

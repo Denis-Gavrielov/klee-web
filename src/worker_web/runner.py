@@ -6,6 +6,7 @@ import subprocess
 import tempfile
 
 import requests
+import sys  # TODO: delete
 
 from mailer.dummy_mailer import DummyMailer
 from mailer.mailgun_mailer import MailgunMailer
@@ -42,8 +43,10 @@ class WorkerRunner():
         self.mailer = DummyMailer() if DEVELOPMENT else MailgunMailer()
         self.worker_name = worker_name
         self.pipeline = pipeline or WorkerRunner.DEFAULT_PROCESSOR_PIPELINE
+        print('end of constructor')
 
     def __enter__(self):
+        print("\n\nINSIDE ENTER, task_id:", self.task_id)
         self.tempdir = tempfile.mkdtemp(prefix=self.task_id)
         self.temp_code_file = os.path.join(self.tempdir, self.CODE_FILE_NAME)
         subprocess.check_call(['sudo', 'chmod', '777', self.tempdir])

@@ -2,6 +2,8 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
+import sys
+
 from worker import submit_code, celery
 from worker_config import WorkerConfig
 from .klee_tasks import *
@@ -18,18 +20,27 @@ def it_works(request):
 def worker_submit_code(request):
     """
     Call the submit_code celery function asynchronously.
-
-    TODO: here we are calling an asynchronous function. Check if that will
-    still be asynchronous given the new pipeline.
     """
     code = request.data.get("code")
     email = request.data.get("email")
     args = request.data.get("args")
     klee_args = request.data.get("klee_args")
     soft_time_limit = request.data.get("soft_time_limit")
+    print('\n ARGUMENTS:', [code, email, args, klee_args],
+                                   int(soft_time_limit), file=sys.stderr)
 
-    task = submit_code.apply_async([code, email, args, klee_args, soft_time_limit])
+    task = submit_code.apply_async([code, email, args, klee_args],
+                                   soft_time_limit=int(soft_time_limit))
     return Response(task.task_id)
+
+
+# task = submit_code.apply_async(
+#     [code,
+#      email,
+#      args,
+#      request.build_absolute_uri(reverse('jobs_notify'))],
+#     soft_time_limit=worker_config.timeout
+# )
 
 @api_view()
 def worker_config_timeout(request):
