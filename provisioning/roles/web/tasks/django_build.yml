@@ -12,6 +12,8 @@
   command: docker build --file ./klee_web/Dockerfile -t klee_web .
   args:
     chdir: "{{ code_dir }}"
+    executable: /bin/bash
+  when: not ci
 
 - name: Delete admin_psw.sh file from klee_web directory
   file:
@@ -22,13 +24,3 @@
   file:
     path: "{{ application_dir }}/klee-web-environment.sh"
     state: absent
-
-- name: Start docker klee-web
-  docker_container:
-    name: django_app
-    image: klee_web
-    restart_policy: always
-    networks: 
-      - name: "{{ container_network }}"
-    volumes:
-      - /tmp:/tmp
