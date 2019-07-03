@@ -1,0 +1,11 @@
+---
+- name: Start docker klee-web
+  docker_container:
+    name: django_app
+    image: klee_web
+    restart_policy: always
+    networks: 
+      - name: "{{ container_network }}"
+    volumes:
+      - /tmp:/tmp
+    recreate: yes
