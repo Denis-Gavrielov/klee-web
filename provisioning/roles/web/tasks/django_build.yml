@@ -1,5 +1,4 @@
 ---
-# --- BUILD ---
 - name: Copy admin password script into klee_web directory
   template: src=admin_psw.sh.j2 dest={{ application_dir }}/admin_psw.sh
 
@@ -25,14 +24,3 @@
   file:
     path: "{{ application_dir }}/klee-web-environment.sh"
     state: absent
-
-# --- DEPLOY ---
-- name: Start docker klee-web
-  docker_container:
-    name: django_app
-    image: klee_web
-    restart_policy: always
-    networks: 
-      - name: "{{ container_network }}"
-    volumes:
-      - /tmp:/tmp

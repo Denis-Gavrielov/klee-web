@@ -1,0 +1,14 @@
+---
+- name: Start docker Worker
+  docker_container:
+    name: worker_1
+    image: celery_worker
+    command: "/bin/bash {{ runner_path }} celery -A worker.worker worker"
+    restart_policy: always
+    volumes: 
+    - /var/run/docker.sock:/var/run/docker.sock
+    # not sure if below one is needed
+    - /jobs/status/:/jobs/status/
+    - /tmp/:/tmp/
+    networks: 
+      - name: "{{ container_network }}"
