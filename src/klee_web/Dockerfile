@@ -17,7 +17,8 @@ RUN mkdir -p /src/web/logs
 RUN apt-get update
 RUN apt install sudo
 RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-RUN apt install nodejs
+RUN apt install nodejs -y
+RUN apt-get install npm -y
 RUN npm install -g grunt-cli
 WORKDIR /titb
 RUN npm install grunt
