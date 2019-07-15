@@ -88,6 +88,7 @@ jobs:
       - run: sudo apt-get install software-properties-common
       - run: lsb_release -a  # delete
       - run: sudo apt-get update -qq
+      - run: sudo apt-get upgrade
       - run: sudo apt-get install python3
       # - run: sudo apt-get remove python2
       - run: python --version  # delete
