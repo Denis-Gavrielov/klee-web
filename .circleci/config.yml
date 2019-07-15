@@ -78,17 +78,19 @@
 #       - run: echo "A first hello. This works"
 
 # ------------- V2 - VM --------------
+# note: can maybe manually spin up all the docker containers coming from the hub??
 
 version: 2
 jobs:
   build:
-    machine: true
+    machine: 
+      image: ubuntu-1604:201903-01
     steps:
       - checkout  # checks out the source code
       - run: sudo apt-get install software-properties-common
       - run: lsb_release -a  # delete
       - run: sudo apt-get update -qq
-      - run: sudo apt-get upgrade
+      # - run: sudo apt-get upgrade
       - run: sudo apt-get install python3
       # - run: sudo apt-get remove python2
       - run: python --version  # delete
