@@ -88,6 +88,7 @@ jobs:
       - run: sudo apt-get install software-properties-common
       - run: lsb_release -a  # delete
       - run: sudo apt-get update -qq
+      - run: python --version  # delete
       # - run: sudo pip3 install setuptools
       - run: sudo apt-get install python-setuptools
       - run: sudo pip install ansible
