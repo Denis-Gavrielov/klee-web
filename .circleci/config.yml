@@ -65,8 +65,8 @@ jobs:
       - run: sudo apt-get install software-properties-common
       - run: lsb_release -a  # delete
       - run: sudo apt-get update -qq
-      - run: sudo apt-add-repository ppa:ansible/ansible -y
-      - run: sudo apt-get update -qq
+      - run: sudo apt-add-repository ppa:ansible/ansible-2.8 -y
+      # - run: sudo apt-get update -qq
       - run: sudo apt-get install ansible -y
       - run: sudo pip install docker-py
       - run: sudo ln -s /home/ubuntu/klee-web/ /titb
