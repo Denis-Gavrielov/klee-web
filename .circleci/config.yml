@@ -89,9 +89,13 @@ jobs:
       - checkout  # checks out the source code
       - run: sudo apt-get install software-properties-common
       # - run: lsb_release -a  # delete
-      # - run: sudo apt-get update -qq
+      - run: sudo apt-get update -qq
       # # - run: sudo apt-get upgrade
       # - run: sudo apt-get install python3
+      # - run: sudo apt-get install python 3.7.4
+      - run: pyenv install 3.7.2
+      - run: pyenv global 3.7.2
+      - run: sudo apt install python3-pip
       # # - run: sudo apt-get remove python2
       # - run: python --version  # delete
       # # - run: sudo pip3 install setuptools
