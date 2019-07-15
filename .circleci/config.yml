@@ -65,9 +65,9 @@ jobs:
       - run: sudo apt-get install software-properties-common
       - run: lsb_release -a  # delete
       - run: sudo apt-get update -qq
-      - run: sudo pip3 install setuptools
-      - run: sudo pip3 install ansible
-      - run: sudo pip3 install docker-py  # needed?
+      - run: sudo pip install setuptools
+      - run: sudo pip install ansible
+      - run: sudo pip install docker-py  # needed?
       - run: sudo ln -s /home/ubuntu/klee-web/ /titb
       - run: ansible-galaxy install --force --role-file=requirements.yml
       - run: ansible --version

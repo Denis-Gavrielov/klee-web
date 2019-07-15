@@ -15,6 +15,7 @@
     # on the NON-FIRST run of vagrant provision
     - role: geerlingguy.pip
       pip_package: python3-pip
+      pip_executable: pip3
     - geerlingguy.docker
     - common
     - redis
