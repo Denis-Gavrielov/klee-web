@@ -70,9 +70,9 @@ jobs:
       - run: sudo pip3 install ansible
       - run: sudo pip3 install docker-py  # needed?
       - run: sudo ln -s /home/ubuntu/klee-web/ /titb
-      - run: ansible-galaxy install --force --role-file=requirements.yml
-      - run: ansible --version
-      - run: ansible-playbook -i localhost, --syntax-check provisioning/vagrant.yml
+      - run: sudo ansible-galaxy install --force --role-file=requirements.yml
+      # - run: ansible --version
+      - run: sudo ansible-playbook -i localhost, --syntax-check provisioning/vagrant.yml
       - run: sudo ansible-playbook -i localhost, --connection=local -vvv -e ci=yes provisioning/vagrant.yml
       - run: echo "A first hello. This works"
 
