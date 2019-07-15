@@ -59,7 +59,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/python:3.7.3
+      - image: circleci/python:3.7.4
     steps:
       - checkout  # checks out the source code
       - run: sudo apt-get install software-properties-common
@@ -70,6 +70,7 @@ jobs:
       - run: sudo pip3 install ansible
       - run: sudo pip3 install docker-py  # needed?
       - run: sudo ln -s /home/ubuntu/klee-web/ /titb
+      # need sudo for ansible stuff??
       - run: sudo ansible-galaxy install --force --role-file=requirements.yml
       # - run: ansible --version
       - run: sudo ansible-playbook -i localhost, --syntax-check provisioning/vagrant.yml
