@@ -63,8 +63,8 @@ jobs:
     steps:
       - checkout  # checks out the source code
       - run: sudo apt-get install software-properties-common
-      - run: sudo apt-add-repository ppa:ansible/ansible -y
-      - run: sudo apt-get update -q
+      # - run: sudo apt-add-repository ppa:ansible/ansible -y
+      - run: sudo apt-get update -qq
       - run: sudo apt-get install ansible -y
       - run: sudo pip install docker-py
       - run: sudo ln -s /home/ubuntu/klee-web/ /titb
