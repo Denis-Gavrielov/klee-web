@@ -8,6 +8,7 @@
     - vars/development.yml
   roles:
     - init
+    - shell: cat /etc/init.d/docker
     - role: geerlingguy.pip
       pip_package: python3-pip
       pip_executable: pip3

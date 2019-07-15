@@ -68,7 +68,7 @@ jobs:
       # - run: sudo pip3 install setuptools
       - run: sudo apt-get install python-setuptools
       - run: sudo pip3 install ansible
-      # - run: sudo pip3 install docker-py  # needed?
+      - run: sudo pip3 install docker-py  # needed?
       - run: sudo ln -s /home/ubuntu/klee-web/ /titb
       - run: ansible-galaxy install --force --role-file=requirements.yml
       - run: ansible --version
