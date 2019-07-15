@@ -59,7 +59,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/python:3.6.1
+      - image: circleci/python:3.7.1-stretch
     steps:
       - checkout  # checks out the source code
       - run: sudo apt-get install software-properties-common
