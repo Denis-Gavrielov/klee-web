@@ -88,23 +88,23 @@ jobs:
     steps:
       - checkout  # checks out the source code
       - run: sudo apt-get install software-properties-common
-      - run: lsb_release -a  # delete
-      - run: sudo apt-get update -qq
-      # - run: sudo apt-get upgrade
-      - run: sudo apt-get install python3
-      # - run: sudo apt-get remove python2
-      - run: python --version  # delete
-      # - run: sudo pip3 install setuptools
-      - run: sudo apt-get install python-setuptools
-      - run: sudo pip install ansible
-      - run: sudo pip install docker  # needed?
-      - run: sudo ln -s /home/ubuntu/klee-web/ /titb
-      # need sudo for ansible stuff??
-      - run: sudo ansible-galaxy install --force --role-file=requirements.yml
-      # - run: ansible --version
-      - run: sudo ansible-playbook -i localhost, --syntax-check provisioning/vagrant.yml
-      - run: sudo ansible-playbook -i localhost, --connection=local -vvv -e ci=yes provisioning/vagrant.yml
-      - run: echo "A first hello. This works"
+      # - run: lsb_release -a  # delete
+      # - run: sudo apt-get update -qq
+      # # - run: sudo apt-get upgrade
+      # - run: sudo apt-get install python3
+      # # - run: sudo apt-get remove python2
+      # - run: python --version  # delete
+      # # - run: sudo pip3 install setuptools
+      # - run: sudo apt-get install python-setuptools
+      # - run: sudo pip install ansible
+      # - run: sudo pip install docker  # needed?
+      # - run: sudo ln -s /home/ubuntu/klee-web/ /titb
+      # # need sudo for ansible stuff??
+      # - run: sudo ansible-galaxy install --force --role-file=requirements.yml
+      # # - run: ansible --version
+      # - run: sudo ansible-playbook -i localhost, --syntax-check provisioning/vagrant.yml
+      # - run: sudo ansible-playbook -i localhost, --connection=local -vvv -e ci=yes provisioning/vagrant.yml
+      # - run: echo "A first hello. This works"
 
 
 # ------------- V3 --------------
