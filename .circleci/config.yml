@@ -108,8 +108,8 @@ jobs:
       # # need sudo for ansible stuff??
       - run: sudo ansible-galaxy install --force --role-file=requirements.yml
       # # - run: ansible --version
-      - run: sudo ansible-playbook -i localhost, --syntax-check provisioning/vagrant.yml
-      # - run: sudo ansible-playbook -i localhost, --connection=local -vvv -e ci=yes provisioning/vagrant.yml
+      - run: sudo ansible-playbook -i localhost, --syntax-check /titb/provisioning/vagrant.yml
+      # - run: sudo ansible-playbook -i localhost, --connection=local -vvv -e ci=yes /titb/provisioning/vagrant.yml
       # - run: echo "A first hello. This works"
 
 

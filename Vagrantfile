@@ -29,7 +29,7 @@ Vagrant.configure("2") do |config|
     # ansible.verbose = "vvvv"
 
     # uncomment following line to only provision tasks with specified tags.
-    # ansible.tags              = "deploy_container"
+    ansible.tags              = "build_django,deploy_container"
   end
 
   config.vm.provider "virtualbox" do |v|

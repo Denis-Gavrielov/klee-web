@@ -8,11 +8,20 @@
     dest: "{{ application_dir }}/klee-web-environment.sh"
     remote_src: yes
 
+# - name: Build klee_web container
+#   command: docker build --file ./klee_web/Dockerfile -t klee_web .
+#   args:
+#     chdir: "{{ code_dir }}"
+#     executable: /bin/bash
+
 - name: Build klee_web container
-  command: docker build --file ./klee_web/Dockerfile -t klee_web .
-  args:
-    chdir: "{{ code_dir }}"
-    executable: /bin/bash
+  docker_image:
+    build:
+      path: "{{ code_dir }}"
+      dockerfile: "./klee_web/Dockerfile"
+    name: klee_web
+    force: yes
+
 
 - name: Delete admin_psw.sh file from klee_web directory
   file:
