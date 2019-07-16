@@ -18,7 +18,6 @@
 
 - name: "Update npm"
   npm: name=npm global=yes state=latest
-  when: not ci
 
 - name: "Install E2E test dependencies"
   npm: path={{ application_dir }}/tests
