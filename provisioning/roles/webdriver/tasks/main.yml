@@ -8,12 +8,10 @@
 # INSTALL NPM NOW THAT IT IS INSTALLED WITHIN THE DOCKER CONTAINER
 - name: "Add official NodeJS repo 6.x"
   shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-  when: not ci
   tags: nodejs
 
 - name: "Install node.js"
   apt: name=nodejs update_cache=yes
-  when: not ci
   tags: nodejs
 
 - name: "Update npm"
@@ -22,3 +20,14 @@
 - name: "Install E2E test dependencies"
   npm: path={{ application_dir }}/tests
   become: no
+
+# TODO: now it fails at the very last test. 
+# look into npm -> some kind of access right issues are there.
+# I tried:
+#    48  cd ~ && mkdir .node_modules_global
+  #  49  npm config set prefix=$HOME/.node_modules_global
+  # and then reinstall npm with
+  # sudo npm install npm@latest -g
+  # sudo npm install
+# but this also did not help with the access stuff.
+# next up: google something with the issue for circle CI.
