@@ -10,6 +10,6 @@
     "grunt-contrib-watch": "^1.0.0"
   },
   "dependencies": {
-    "E2E-Tests": "file:./tests"
+    "E2E-Tests": "file:/titb/src/klee_web/tests/"
   }
 }

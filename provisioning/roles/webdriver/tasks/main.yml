@@ -18,7 +18,7 @@
   npm: name=npm global=yes state=latest
 
 - name: "Install phantomjs for CI"
-  npm: name=phantomjs state=2.1.1 unsafe_perm=yes path={{ application_dir }}/tests
+  npm: name=phantomjs version=2.1.1 unsafe_perm=yes path={{ application_dir }}/tests
   become: no
   when: ci|bool
 
@@ -55,3 +55,19 @@
   # AND IT WORKS!!!
 # now: change the path in the klee_web package.lock, do both installations there, then
 #   do both installations in tests.
+
+
+# /titb/src/klee_web/tests$ sudo npm install --no-package-loc
+# /titb/src/klee_web/tests$ npm install phantomjs@2.1.1 --unsafe-perm
+# /titb/src/klee_web/tests$ sudo npm install phantomjs@2.1.1 --unsafe-perm
+# /titb/src/klee_web/tests$ sudo npm install -g phantomjs@2.1.1 --unsafe-perm
+# /titb/src/klee_web/tests$ mocha e2e_tests.js
+# /titb/src/klee_web/tests$ sudo npm install --no-package-loc
+# /titb/src/klee_web/tests$ mocha e2e_tests.js
+# /titb/src/klee_web$ sudo npm install phantomjs@2.1.1 --unsafe-perm
+# /titb/src/klee_web$ sudo npm install --no-package-loc
+# /titb/src/klee_web$ mocha tests/e2e_tests.js
+# /titb/src/klee_web/tests$ mocha e2e_tests.js
+# /titb/src/klee_web/tests$ sudo npm install --no-package-loc
+# /titb/src/klee_web/tests$ mocha e2e_tests.js
+######## this works
