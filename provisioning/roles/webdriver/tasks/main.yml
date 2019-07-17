@@ -20,12 +20,12 @@
 - name: "Install E2E test dependencies"
   npm: path={{ application_dir }}/tests
   become: no
-  when: not ci
+  # when: not ci
 
-- name: "Install E2E test dependencies"
-  npm: path={{ application_dir }}/tests ci=yes
-  become: no
-  when: ci
+# - name: "Install E2E test dependencies"
+#   npm: path={{ application_dir }}/tests ci=yes
+#   become: no
+#   when: ci
 
 # TODO: now it fails at the very last test. 
 # look into npm -> some kind of access right issues are there.
@@ -39,3 +39,4 @@
 # next up: google something with the issue for circle CI.
 
 # try installing: sudo apt-get install libfontconfig
+
