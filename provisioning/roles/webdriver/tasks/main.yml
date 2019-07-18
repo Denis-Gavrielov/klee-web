@@ -19,7 +19,7 @@
 
 - name: "Install phantomjs for CI"
   npm: name=phantomjs version=2.1.1 unsafe_perm=yes path={{ application_dir }}
-  become: no
+  become: yes
   when: ci|bool
 
 - name: "Install E2E test dependencies"
