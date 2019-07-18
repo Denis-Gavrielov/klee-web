@@ -23,12 +23,12 @@
   when: ci|bool
 
 - name: "Install E2E test dependencies"
-  npm: path={{ application_dir }} ci=yes
+  npm: path={{ application_dir }} 
   become: yes
   when: ci|bool
 
 - name: "Install E2E test dependencies in tests folder"
-  npm: path={{ application_dir }}/tests ci=yes
+  npm: path={{ application_dir }}/tests 
   become: yes
   when: ci|bool
 
