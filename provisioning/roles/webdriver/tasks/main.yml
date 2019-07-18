@@ -18,11 +18,16 @@
   npm: name=npm global=yes state=latest
 
 - name: "Install phantomjs for CI"
-  npm: name=phantomjs version=2.1.1 unsafe_perm=yes path={{ application_dir }}/tests
+  npm: name=phantomjs version=2.1.1 unsafe_perm=yes path={{ application_dir }}
   become: no
   when: ci|bool
 
 - name: "Install E2E test dependencies"
+  npm: path={{ application_dir }} ci=yes
+  become: yes
+  when: ci|bool
+
+- name: "Install E2E test dependencies in tests folder"
   npm: path={{ application_dir }}/tests ci=yes
   become: yes
   when: ci|bool
@@ -77,3 +82,4 @@
 # /titb/src/klee_web$ sudo npm install --no-package-loc
 # /titb/src/klee_web/tests$ sudo npm install --no-package-loc
 # /titb/src/klee_web/tests$ mocha e2e_tests.js
+# WORKS!!

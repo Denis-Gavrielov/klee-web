@@ -111,6 +111,7 @@ jobs:
       - run: cd /titb/
       - run: sudo ansible-playbook -i localhost, --syntax-check ./provisioning/vagrant.yml
       - run: sudo ansible-playbook -i localhost, --connection=local -vvv -e ci=yes ./provisioning/vagrant.yml
+      - run: . run_tests.sh
       # - run: echo "A first hello. This works"
 
 
