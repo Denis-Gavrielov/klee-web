@@ -71,3 +71,9 @@
 # /titb/src/klee_web/tests$ sudo npm install --no-package-loc
 # /titb/src/klee_web/tests$ mocha e2e_tests.js
 ######## this works
+
+# TRY THIS:
+# /titb/src/klee_web$ sudo npm install phantomjs@2.1.1 --unsafe-perm
+# /titb/src/klee_web$ sudo npm install --no-package-loc
+# /titb/src/klee_web/tests$ sudo npm install --no-package-loc
+# /titb/src/klee_web/tests$ mocha e2e_tests.js
