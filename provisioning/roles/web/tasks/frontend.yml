@@ -49,8 +49,8 @@
   when: not ci
 
 - name: "Install grunt-cli"
-  npm: name=grunt-cli global=yes executable=/opt/circleci/.nvm/versions/node/v6.1.0/bin/npm
-  become: yes
+  npm: name=grunt-cli global=yes
+  become: no
   when: ci|bool
 
 - name: "Install grunt"
