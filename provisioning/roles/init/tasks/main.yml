@@ -13,7 +13,7 @@
     update_cache: yes
     state: latest
 
-- name: Update an dinstall language-pack-en-base
+- name: Update and install language-pack-en-base
   apt:
     name:
       - language-pack-en-base
