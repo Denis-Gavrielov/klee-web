@@ -44,7 +44,7 @@ jobs:
       # - run: pyenv install 3.7.2
       # - run: pyenv global 3.7.2
       # can do:
-      - run: pyenv global 3.7.0  # can also update later if needed
+      # - run: pyenv global 3.7.0  # can also update later if needed
       - run: sudo apt install python3-pip
       - run: sudo pip install ansible
       - run: sudo ln -s /home/circleci/project/ /titb
