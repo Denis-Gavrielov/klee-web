@@ -5,7 +5,7 @@ jobs:
     # machine: 
     #   image: ubuntu-1604:201903-01
     docker:
-      - image: cicleci/python: 3.7.3
+      - image: cicleci/python:3.7.3
     steps:
       - checkout  
       # - run: sudo apt-get install software-properties-common
