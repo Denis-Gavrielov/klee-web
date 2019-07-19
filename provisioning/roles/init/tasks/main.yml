@@ -5,10 +5,18 @@
 #     update_cache: yes
 #     upgrade: yes
 
-- name: Update and install core dependencies
+- name: Update and install git
   apt:
     name:
       - git
-      - language-pack-en-base # TODO: do we really need this?
+      # - language-pack-en-base # TODO: do we really need this?
     update_cache: yes
     state: latest
+
+- name: Update an dinstall language-pack-en-base
+  apt:
+    name:
+      - language-pack-en-base
+    update_cache: yes
+    state: latest
+  when: not ci
