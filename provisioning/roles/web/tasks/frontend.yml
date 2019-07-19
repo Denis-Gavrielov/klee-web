@@ -48,17 +48,19 @@
   npm: name=bower global=yes
   when: not ci
 
-# - name: "Install grunt-cli"
-#   npm: 
-#     name: grunt-cli 
-#     global: yes 
-#   become: no
-#   when: ci|bool
-
 - name: "Install grunt-cli"
-  shell: install grunt-cli -g
-  args:
-    executable: /opt/circleci/.nvm/versions/node/v6.1.0/bin/npm
+  npm: 
+    name: grunt-cli 
+    global: yes 
+  environment:
+    PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin/npm:{{ ansible_env.PATH }}"
+  become: no
+  when: ci|bool
+
+# - name: "Install grunt-cli"
+#   shell: install grunt-cli -g
+#   args:
+#     executable: /opt/circleci/.nvm/versions/node/v6.1.0/bin/npm
 
       
 
