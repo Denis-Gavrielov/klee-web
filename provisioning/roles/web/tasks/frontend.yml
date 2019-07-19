@@ -49,42 +49,42 @@
   when: not ci
 
 - name: "Install grunt-cli"
-  npm: name=grunt-cli global=yes executable=/opt/circleci/.nvm/versions/node/v6.1.0/lib/node_modules/npm
+  npm: name=grunt-cli global=yes executable=/opt/circleci/.nvm/versions/node/v6.1.0/lib/node_modules/npm/bin/npm
   become: yes
   when: ci|bool
 
 - name: "Install grunt"
-  npm: name=grunt path="{{ src_dir }}" executable=/opt/circleci/.nvm/versions/node/v6.1.0/lib/node_modules/npm
+  npm: name=grunt path="{{ src_dir }}" executable=/opt/circleci/.nvm/versions/node/v6.1.0/lib/node_modules/npm/bin/npm
   become: yes
   when: ci|bool
 
 - name: "Install grunt module sass"
-  npm: name=grunt-contrib-sass path="{{ src_dir }}" executable=/opt/circleci/.nvm/versions/node/v6.1.0/lib/node_modules/npm
+  npm: name=grunt-contrib-sass path="{{ src_dir }}" executable=/opt/circleci/.nvm/versions/node/v6.1.0/lib/node_modules/npm/bin/npm
   become: yes
   when: ci|bool
 
 - name: "Install grunt module watch"
-  npm: name=grunt-contrib-watch path="{{ src_dir }}" executable=/opt/circleci/.nvm/versions/node/v6.1.0/lib/node_modules/npm
+  npm: name=grunt-contrib-watch path="{{ src_dir }}" executable=/opt/circleci/.nvm/versions/node/v6.1.0/lib/node_modules/npm/bin/npm
   become: yes
   when: ci|bool
 
 - name: "Install grunt module copy"
-  npm: name=grunt-contrib-copy path="{{ src_dir }}" executable=/opt/circleci/.nvm/versions/node/v6.1.0/lib/node_modules/npm
+  npm: name=grunt-contrib-copy path="{{ src_dir }}" executable=/opt/circleci/.nvm/versions/node/v6.1.0/lib/node_modules/npm/bin/npm
   become: yes
   when: ci|bool
 
 - name: "Install grunt module concat"
-  npm: name=grunt-contrib-concat path="{{ src_dir }}" executable=/opt/circleci/.nvm/versions/node/v6.1.0/lib/node_modules/npm
+  npm: name=grunt-contrib-concat path="{{ src_dir }}" executable=/opt/circleci/.nvm/versions/node/v6.1.0/lib/node_modules/npm/bin/npm
   become: yes
   when: ci|bool
 
 - name: "Install grunt module uglify"
-  npm: name=grunt-contrib-uglify path="{{ src_dir }}" executable=/opt/circleci/.nvm/versions/node/v6.1.0/lib/node_modules/npm
+  npm: name=grunt-contrib-uglify path="{{ src_dir }}" executable=/opt/circleci/.nvm/versions/node/v6.1.0/lib/node_modules/npm/bin/npm
   become: yes
   when: ci|bool
 
 - name: "Install bower"
-  npm: name=bower global=yes executable=/opt/circleci/.nvm/versions/node/v6.1.0/lib/node_modules/npm
+  npm: name=bower global=yes executable=/opt/circleci/.nvm/versions/node/v6.1.0/lib/node_modules/npm/bin/npm
   become: yes
   when: ci|bool
 
@@ -95,7 +95,7 @@
   when: not ci
 
 - name: "Install node dependencies"
-  npm: path={{ src_dir }} executable=/opt/circleci/.nvm/versions/node/v6.1.0/lib/node_modules/npm
+  npm: path={{ src_dir }} executable=/opt/circleci/.nvm/versions/node/v6.1.0/lib/node_modules/npm/bin/npm
   become: no
   when: ci|bool
 
