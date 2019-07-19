@@ -23,7 +23,7 @@ jobs:
       - run: sudo apt-get install software-properties-common
       # - run: sudo apt-add-repository ppa:ansible/ansible -y
       - run: sudo apt-get update -qq
-      - run: sudo apt-get install ansible -y
+      - run: sudo pip install ansible
       - run: sudo pip install docker-py
       - run: sudo ln -s /home/circleci/project/ /titb
       - run: ansible-galaxy install --force --role-file=requirements.yml
