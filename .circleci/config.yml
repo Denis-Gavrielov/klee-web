@@ -27,7 +27,7 @@ jobs:
       - run: sudo pip install docker-py
       - run: sudo ln -s /home/ubuntu/klee-web/ /titb
       - run: ansible-galaxy install --force --role-file=requirements.yml
-      # - run: cd /titb/
+      - run: cd /titb/
       - run: ansible-playbook -i localhost, --syntax-check provisioning/vagrant.yml
       - run: ansible-playbook -i localhost, --connection=local -e ci=yes provisioning/vagrant.yml
       - run: ./run_tests.sh
