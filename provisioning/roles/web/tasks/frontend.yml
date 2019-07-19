@@ -65,37 +65,51 @@
       
 
 - name: "Install grunt"
-  npm: name=grunt path="{{ application_dir }}" executable=/opt/circleci/.nvm/versions/node/v6.1.0/bin/npm
+  npm: name=grunt path="{{ application_dir }}"
+  environment:
+    PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
   become: yes
   when: ci|bool
 
 - name: "Install grunt module sass"
-  npm: name=grunt-contrib-sass path="{{ application_dir }}" executable=/opt/circleci/.nvm/versions/node/v6.1.0/bin/npm
+  npm: name=grunt-contrib-sass path="{{ application_dir }}" 
+  environment:
+    PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
   become: yes
   when: ci|bool
 
 - name: "Install grunt module watch"
-  npm: name=grunt-contrib-watch path="{{ application_dir }}" executable=/opt/circleci/.nvm/versions/node/v6.1.0/bin/npm
+  npm: name=grunt-contrib-watch path="{{ application_dir }}" 
+  environment:
+    PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
   become: yes
   when: ci|bool
 
 - name: "Install grunt module copy"
-  npm: name=grunt-contrib-copy path="{{ application_dir }}" executable=/opt/circleci/.nvm/versions/node/v6.1.0/bin/npm
+  npm: name=grunt-contrib-copy path="{{ application_dir }}" 
+  environment:
+    PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
   become: yes
   when: ci|bool
 
 - name: "Install grunt module concat"
-  npm: name=grunt-contrib-concat path="{{ application_dir }}" executable=/opt/circleci/.nvm/versions/node/v6.1.0/bin/npm
+  npm: name=grunt-contrib-concat path="{{ application_dir }}" 
+  environment:
+    PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
   become: yes
   when: ci|bool
 
 - name: "Install grunt module uglify"
-  npm: name=grunt-contrib-uglify path="{{ application_dir }}" executable=/opt/circleci/.nvm/versions/node/v6.1.0/bin/npm
+  npm: name=grunt-contrib-uglify path="{{ application_dir }}" 
+  environment:
+    PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
   become: yes
   when: ci|bool
 
 - name: "Install bower"
-  npm: name=bower global=yes executable=/opt/circleci/.nvm/versions/node/v6.1.0/bin/npm
+  npm: name=bower global=yes 
+  environment:
+    PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
   become: yes
   when: ci|bool
 
@@ -106,7 +120,9 @@
   when: not ci
 
 - name: "Install node dependencies"
-  npm: path={{ application_dir }} executable=/opt/circleci/.nvm/versions/node/v6.1.0/bin/npm
+  npm: path={{ application_dir }} 
+  environment:
+    PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
   become: no
   when: ci|bool
 
