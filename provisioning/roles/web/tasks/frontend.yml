@@ -62,7 +62,8 @@
 #   args:
 #     executable: /opt/circleci/.nvm/versions/node/v6.1.0/bin/npm
 
-      
+# to run without sudo: change the right file directory permissions
+
 
 - name: "Install grunt"
   npm: name=grunt path="{{ application_dir }}"

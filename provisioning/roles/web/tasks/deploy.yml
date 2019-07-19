@@ -14,7 +14,7 @@
   become: yes
   become_user: klide
   args:
-    chdir: "{{ src_dir }}"
+    chdir: "{{ application_dir }}"
     executable: /bin/bash
   when: not ci
 
@@ -23,7 +23,7 @@
   become: yes
   become_user: klide
   args:
-    chdir: "{{ src_dir }}"
+    chdir: "{{ application_dir }}"
     executable: /bin/bash
   when: not ci
 
@@ -31,14 +31,14 @@
   command: bower install --config.interactive=false
   become: no
   args:
-    chdir: "{{ src_dir }}"
+    chdir: "{{ application_dir }}"
   when: ci|bool
 
 - name: Run grunt
   command: grunt
   become: no
   args:
-    chdir: "{{ src_dir }}"
+    chdir: "{{ application_dir }}"
   when: ci|bool
 
 - name: Run Django South migrations
