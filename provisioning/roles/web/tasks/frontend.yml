@@ -56,9 +56,9 @@
 #   when: ci|bool
 
 - name: "Install grunt-cli"
-  shell: npm install grunt-cli -g
-#   args:
-#     executable: /opt/circleci/.nvm/versions/node/v6.1.0/bin/npm
+  shell: install grunt-cli -g
+  args:
+    executable: /opt/circleci/.nvm/versions/node/v6.1.0/bin/npm
 
       
 
