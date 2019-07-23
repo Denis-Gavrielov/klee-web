@@ -34,6 +34,6 @@ _Run "Running Python Unit tests" "(cd /titb/src/klee_web && python -m unittest d
 
 # _Run "Waiting for webserver to come up" "sleep 10"
 
-_Run "Checking that loading the homepage returns 200 OK" "http --check-status http://localhost/ > /dev/null"
+_Run "Checking that loading the homepage returns 200 OK" "http --check-status http://192.168.33.10/ > /dev/null"
 
 # _Run "Running E2E webdriver tests" "cd /titb/src/klee_web/tests/ && npm test"

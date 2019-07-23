@@ -14,7 +14,7 @@
     src: /etc/profile.d/klee-web-environment.sh
     dest: "{{ application_dir }}/tests/klee-web-environment.sh"
     remote_src: yes
-  when: ci|bool
+  # when: ci|bool
   tags: e2e
 
 - name: Build E2E_test container
@@ -22,7 +22,7 @@
   args:
     chdir: "{{ src_dir }}"
     executable: /bin/bash
-  when: ci|bool
+  # when: ci|bool
   tags: e2e
 
 # todo: maybe add this into the docker network
@@ -40,4 +40,4 @@
     path: "{{ application_dir }}/tests/klee-web-environment.sh"
     state: absent
   tags: e2e
-  when: ci|bool
+  # when: ci|bool
