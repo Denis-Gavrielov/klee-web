@@ -25,7 +25,7 @@
   args:
     chdir: "{{ src_dir }}"
     executable: /bin/bash
-  # when: not ci
+  when: not ci
 
 - name: Get bower dependencies
   command: bower install --config.interactive=false --allow-root
@@ -36,14 +36,14 @@
   #   PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin/:{{ ansible_env.PATH }}"
   when: ci|bool
 
-# - name: Run grunt
-#   command: grunt
-#   become: no
-#   args:
-#     chdir: "{{ src_dir }}"
-#   environment:
-#     PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin/:{{ ansible_env.PATH }}"
-#   when: ci|bool
+- name: Run grunt
+  command: grunt
+  become: yes
+  args:
+    chdir: "{{ src_dir }}"
+  # environment:
+  #   PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin/:{{ ansible_env.PATH }}"
+  when: ci|bool
 
 - name: Run Django South migrations
   shell: . {{ web_virtualenv }}/bin/activate
