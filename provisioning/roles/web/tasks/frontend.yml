@@ -4,58 +4,58 @@
 
 - name: "Add official NodeJS repo 6.x"
   shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-  when: not ci
+  # when: not ci
   tags: nodejs
 
 - name: "Install node.js"
   apt: name=nodejs update_cache=yes
-  when: not ci
+  # when: not ci
   tags: nodejs
 
 - name: "Update npm"
   npm: name=npm global=yes state=latest
-  when: not ci
+  # when: not ci
 
 - name: "Install grunt-cli"
   npm: name=grunt-cli global=yes
-  when: not ci
+  # when: not ci
 
 - name: "Install grunt"
   npm: name=grunt path="{{ src_dir }}"
-  when: not ci
+  # when: not ci
 
 - name: "Install grunt module sass"
   npm: name=grunt-contrib-sass path="{{ src_dir }}"
-  when: not ci
+  # when: not ci
 
 - name: "Install grunt module watch"
   npm: name=grunt-contrib-watch path="{{ src_dir }}"
-  when: not ci
+  # when: not ci
 
 - name: "Install grunt module copy"
   npm: name=grunt-contrib-copy path="{{ src_dir }}"
-  when: not ci
+  # when: not ci
 
 - name: "Install grunt module concat"
   npm: name=grunt-contrib-concat path="{{ src_dir }}"
-  when: not ci
+  # when: not ci
 
 - name: "Install grunt module uglify"
   npm: name=grunt-contrib-uglify path="{{ src_dir }}"
-  when: not ci
+  # when: not ci
 
 - name: "Install bower"
   npm: name=bower global=yes
-  when: not ci
+  # when: not ci
 
-- name: "Install grunt-cli"
-  npm: 
-    name: grunt-cli 
-    global: yes 
-  environment:
-    PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
-  become: no
-  when: ci|bool
+# - name: "Install grunt-cli"
+#   npm: 
+#     name: grunt-cli 
+#     global: yes 
+#   environment:
+#     PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
+#   become: no
+#   when: ci|bool
 
 # - name: "Install grunt-cli"
 #   shell: install grunt-cli -g
@@ -65,67 +65,67 @@
 # to run without sudo: change the right file directory permissions
 
 
-- name: "Install grunt"
-  npm: name=grunt path="{{ src_dir }}"
-  environment:
-    PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
-  become: yes
-  when: ci|bool
+# - name: "Install grunt"
+#   npm: name=grunt path="{{ src_dir }}"
+#   environment:
+#     PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
+#   become: yes
+#   when: ci|bool
 
-- name: "Install grunt module sass"
-  npm: name=grunt-contrib-sass path="{{ src_dir }}" 
-  environment:
-    PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
-  become: yes
-  when: ci|bool
+# - name: "Install grunt module sass"
+#   npm: name=grunt-contrib-sass path="{{ src_dir }}" 
+#   environment:
+#     PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
+#   become: yes
+#   when: ci|bool
 
-- name: "Install grunt module watch"
-  npm: name=grunt-contrib-watch path="{{ src_dir }}" 
-  environment:
-    PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
-  become: yes
-  when: ci|bool
+# - name: "Install grunt module watch"
+#   npm: name=grunt-contrib-watch path="{{ src_dir }}" 
+#   environment:
+#     PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
+#   become: yes
+#   when: ci|bool
 
-- name: "Install grunt module copy"
-  npm: name=grunt-contrib-copy path="{{ src_dir }}" 
-  environment:
-    PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
-  become: yes
-  when: ci|bool
+# - name: "Install grunt module copy"
+#   npm: name=grunt-contrib-copy path="{{ src_dir }}" 
+#   environment:
+#     PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
+#   become: yes
+#   when: ci|bool
 
-- name: "Install grunt module concat"
-  npm: name=grunt-contrib-concat path="{{ src_dir }}" 
-  environment:
-    PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
-  become: yes
-  when: ci|bool
+# - name: "Install grunt module concat"
+#   npm: name=grunt-contrib-concat path="{{ src_dir }}" 
+#   environment:
+#     PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
+#   become: yes
+#   when: ci|bool
 
-- name: "Install grunt module uglify"
-  npm: name=grunt-contrib-uglify path="{{ src_dir }}" 
-  environment:
-    PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
-  become: yes
-  when: ci|bool
+# - name: "Install grunt module uglify"
+#   npm: name=grunt-contrib-uglify path="{{ src_dir }}" 
+#   environment:
+#     PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
+#   become: yes
+#   when: ci|bool
 
-- name: "Install bower"
-  npm: name=bower global=yes 
-  environment:
-    PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
-  become: yes
-  when: ci|bool
+# - name: "Install bower"
+#   npm: name=bower global=yes 
+#   environment:
+#     PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
+#   become: yes
+#   when: ci|bool
 
 - name: "Install node dependencies"
   npm: path={{ src_dir }}
   become: yes
   become_user: klide
-  when: not ci
+  # when: not ci
 
-- name: "Install node dependencies"
-  npm: path={{ src_dir }} 
-  environment:
-    PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
-  become: no
-  when: ci|bool
+# - name: "Install node dependencies"
+#   npm: path={{ src_dir }} 
+#   environment:
+#     PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin:{{ ansible_env.PATH }}"
+#   become: no
+#   when: ci|bool
 
 - name: "Add brightbox ruby"
   apt_repository: repo='ppa:brightbox/ruby-ng'
