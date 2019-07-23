@@ -29,7 +29,7 @@
 
 - name: Get bower dependencies
   command: bower install --config.interactive=false --allow-root
-  become: yes
+  become: no
   args:
     chdir: "{{ src_dir }}"
   # environment:
