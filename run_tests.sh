@@ -25,7 +25,7 @@ DIR="$( cd "$( dirname "$0" )" && pwd )"
 
 _Run "Running Flake8 against Python Code" "flake8 --ignore=E722 --max-complexity 12 --exclude=migrations $DIR"
 
-_Run "Running Python Unit tests" "(source /src/worker/env/bin/activate && cd /titb/src/klee_web && /src/python_runner.sh python -m unittest discover -s worker/tests/ -p 'test_*.py')"
+_Run "Running Python Unit tests" "(cd /titb/src/klee_web && python -m unittest discover -s worker/tests/ -p 'test_*.py')"
 
 _Run "Waiting for webserver to come up" "sleep 10"
 

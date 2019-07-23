@@ -1,10 +1,40 @@
 ---
-- name: Install flake8
-  pip: name=flake8
+# - name: Install flake8
+#   pip: name=flake8
 
-- name: Install HTTPIE
-  pip: name=httpie
+# - name: Install HTTPIE
+#   pip: name=httpie
 
-- name: "Install E2E test dependencies"
-  npm: path={{ application_dir }}/tests
-  become: no
+# - name: "Install E2E test dependencies"
+#   npm: path={{ application_dir }}/tests
+#   become: no
+
+- name: Copy klee-web-environment.sh file into klee_web directory
+  copy:
+    src: /etc/profile.d/klee-web-environment.sh
+    dest: "{{ application_dir }}/klee-web-environment.sh"
+    remote_src: yes
+  tags: e2e
+
+- name: Build E2E_test container
+  command: docker build --file ./src/klee_web/tests/Dockerfile -t e2e_test .
+  args:
+    chdir: "{{ src_dir }}"
+    executable: /bin/bash
+  when: not ci
+  tags: e2e
+
+# todo: maybe add this into the docker network
+# - name: Build Docker image for E2E_test
+#   docker_image:
+#     build:
+#       path: "{{ src_dir }}"
+#       dockerfile: "{{ application_dir }}/tests"
+#     name: E2E_test
+#     force: yes
+#   tags: e2e
+
+# - name: Delete klee-web-environment.sh file from klee_web directory
+#   file:
+#     path: "{{ application_dir }}/klee-web-environment.sh"
+#     state: absent
