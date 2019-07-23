@@ -51,6 +51,13 @@
   #   PATH: "/opt/circleci/.nvm/versions/node/v6.1.0/bin/:{{ ansible_env.PATH }}"
   when: ci|bool
 
+- name: Remove boto.cfg for CI 
+  file:
+    path: /etc/boto.cfg
+    state: absent
+  become: yes
+  when: ci|bool
+
 - name: Run Django South migrations
   shell: . {{ web_virtualenv }}/bin/activate
          && . /etc/profile.d/klee-web-environment.sh
