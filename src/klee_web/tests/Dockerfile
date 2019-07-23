@@ -14,7 +14,17 @@ COPY run_tests.sh /titb/
 WORKDIR /titb/src/klee_web/tests
 RUN npm install
 
+# be able to launch docker
+RUN apt --assume-yes install docker.io
+RUN apt install sudo
+
 WORKDIR /titb
 RUN pip install -r src/klee_web/requirements.txt
 
-CMD . src/klee_web/klee-web-environment.sh && . run_tests.sh
+CMD /bin/bash src/klee_web/klee-web-environment.sh && /bin/bash run_tests.sh
+
+# currently running with:
+# sudo docker run --rm -it --network web_network -v /var/run/docker.sock:/var/run/docker.sock e2e_test /bin/bash
+# sudo docker run --rm -it --network web_network -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/:/tmp/ e2e_test /bin/bash
+
+# possibly put this command into a file, which then is called by circle ci at the end of provisioning
