@@ -27,9 +27,15 @@
     executable: /bin/bash
   when: not ci
 
+- name: remove .gitconfig in ci
+  file: 
+    path: ~/.gitconfig
+    state: absent
+  when: ci|bool
+
 - name: Get bower dependencies
   command: bower install --config.interactive=false --allow-root
-  become: no
+  become: yes
   args:
     chdir: "{{ src_dir }}"
   # environment:
