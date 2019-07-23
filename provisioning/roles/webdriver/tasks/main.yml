@@ -12,7 +12,7 @@
 - name: Copy klee-web-environment.sh file into klee_web directory
   copy:
     src: /etc/profile.d/klee-web-environment.sh
-    dest: "{{ application_dir }}/klee-web-environment.sh"
+    dest: "{{ application_dir }}/tests/klee-web-environment.sh"
     remote_src: yes
   tags: e2e
 
