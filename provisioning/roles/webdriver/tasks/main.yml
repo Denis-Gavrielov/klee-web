@@ -14,6 +14,7 @@
     src: /etc/profile.d/klee-web-environment.sh
     dest: "{{ application_dir }}/tests/klee-web-environment.sh"
     remote_src: yes
+  when: ci|bool
   tags: e2e
 
 - name: Build E2E_test container
@@ -21,7 +22,7 @@
   args:
     chdir: "{{ src_dir }}"
     executable: /bin/bash
-  when: not ci
+  when: ci|bool
   tags: e2e
 
 # todo: maybe add this into the docker network
@@ -34,7 +35,9 @@
 #     force: yes
 #   tags: e2e
 
-# - name: Delete klee-web-environment.sh file from klee_web directory
-#   file:
-#     path: "{{ application_dir }}/klee-web-environment.sh"
-#     state: absent
+- name: Delete klee-web-environment.sh file from klee_web directory
+  file:
+    path: "{{ application_dir }}/tests/klee-web-environment.sh"
+    state: absent
+  tags: e2e
+  when: ci|bool
