@@ -1,6 +1,6 @@
 FROM node:12.7.0
 
-COPY src/klee_web/tests /titb/src/klee_web/tests
+COPY /tests /titb/src/klee_web/tests
 
 WORKDIR /titb/src/klee_web/tests
 RUN npm install
