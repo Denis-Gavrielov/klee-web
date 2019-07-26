@@ -55,3 +55,4 @@ jobs:
       - run: sudo ansible-playbook -i localhost, --connection=local -vvv -e ci=yes ./provisioning/vagrant.yml
       # - run: pyenv global 3.7.2
       - run: sudo docker run --rm -it --network web_network -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/:/tmp/ e2e_test
+      - run: sudo docker run --rm -it e2e_test_js

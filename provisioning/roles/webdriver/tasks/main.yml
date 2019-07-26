@@ -41,3 +41,9 @@
     state: absent
   tags: e2e
   # when: ci|bool
+
+- name: build js e2e tests image
+  command: docker build --file ./tests/Dockerfile_js -t e2e_test_js .
+  args:
+    chdir: "{{ application_dir }}"
+  tags: e2e
