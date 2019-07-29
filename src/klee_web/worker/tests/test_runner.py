@@ -42,8 +42,6 @@ class TestWorkerRunner(unittest.TestCase):
                                     self.runner.execute_pipeline, code,
                                     run_configuration)
         else:
-            print('THIS ONE')
-            print('HELLO?')
             result = self.runner.execute_pipeline(code, run_configuration)
             stdout = result['klee_run']['output']
             self.assertRegex(stdout, expected_regex)
