@@ -38,13 +38,15 @@ class TestWorkerRunner(unittest.TestCase):
         flags = re.M | re.DOTALL | re.UNICODE
         expected_regex = re.compile(u"{}$".format(expected_out), flags)
         if expect_failure:
-            self.assertRaisesRegexp(KleeRunFailure, expected_regex,
+            self.assertRaisesRegex(KleeRunFailure, expected_regex,
                                     self.runner.execute_pipeline, code,
                                     run_configuration)
         else:
+            print('THIS ONE')
+            print('HELLO?')
             result = self.runner.execute_pipeline(code, run_configuration)
             stdout = result['klee_run']['output']
-            self.assertRegexpMatches(stdout, expected_regex)
+            self.assertRegex(stdout, expected_regex)
 
     def test_simple_run(self):
         self.run_klee_test('simple')

@@ -1,0 +1,2 @@
+l = ['sudo', 'docker', 'run', '-t', '--cpu-shares=100', '-v', '/tmp/testmndqhk8p:/tmp/code', '-w', '/tmp/code', '--net=none', '--rm=true', 'klee/klee', '/usr/bin/clang-6.0', '-I', '/home/klee/klee_src/include', '-emit-llvm', '-c', '-g', '/tmp/code/code.c', '-o', '/tmp/code/code.o']
+print(' '.join(l))
