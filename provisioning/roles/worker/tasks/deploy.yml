@@ -6,9 +6,8 @@
     command: "/bin/bash {{ runner_path }} celery -A worker.worker worker"
     restart_policy: always
     volumes: 
+    # allow this container to start other Docker containers:
     - /var/run/docker.sock:/var/run/docker.sock
-    # not sure if below one is needed
-    - /jobs/status/:/jobs/status/
     - /tmp/:/tmp/
     networks: 
       - name: "{{ container_network }}"
