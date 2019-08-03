@@ -13,7 +13,6 @@
   args:
     chdir: "{{ code_dir }}"
     executable: /bin/bash
-  when: not ci
 
 - name: Delete admin_psw.sh file from klee_web directory
   file:
