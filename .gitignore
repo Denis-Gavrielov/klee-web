@@ -4,15 +4,12 @@ web/**/target
 *.pyc
 Report/*
 .DS_Store
-src/klee_web/static/*
-src/static/*
 **/node_modules/*
 npm-debug.log
 *.swp
 **/*.swp
 src/components/
 .sass-cache/
-src/klee_web/frontend/static/frontend/dist
 src/sass/bootstrap/
 src/klee_web/geoip/
 src/geoip/
