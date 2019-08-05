@@ -7,5 +7,5 @@ RUN apt install sudo
 # install python requirements
 RUN pip install flake8
 RUN pip install httpie
-COPY src/klee_web/requirements.txt /requirements.txt
+COPY ./requirements.txt /requirements.txt
 RUN pip install -r /requirements.txt && rm -f /requirements.txt
