@@ -1,4 +1,9 @@
 ---
+# - name: Remove existing geoip directory
+#   file:
+#     path: "{{ application_dir }}/geoip/"
+#     state: absent
+
 - name: Start docker klee-web
   docker_container:
     name: django_app
