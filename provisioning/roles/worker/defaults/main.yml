@@ -1,5 +1,3 @@
 ---
 worker_dir: "{{ code_dir }}/worker"
-runner_path: "{{ worker_dir }}/python_runner.sh"
-klee_env_path_worker: "{{ worker_dir }}/klee-web-environment.sh"
 klee_env_path_etc: /etc/profile.d/klee-web-environment.sh
