@@ -3,11 +3,15 @@
   docker_container:
     name: worker_1
     image: celery_worker
-    command: "/bin/bash {{ runner_path }} celery -A worker.worker worker"
     restart_policy: always
     volumes: 
-    # allow this container to start other Docker containers:
+    # can start other containers:
     - /var/run/docker.sock:/var/run/docker.sock
+    # can place results into /tmp/ folder
     - /tmp/:/tmp/
+    # connect source code paths 
+    - "{{ klee_env_path_etc }}:{{ klee_env_path_etc }}"
+    - "{{ python_runner }}:{{ python_runner }}"
+    - "{{ worker_dir }}:{{ worker_dir }}"
     networks: 
       - name: "{{ container_network }}"

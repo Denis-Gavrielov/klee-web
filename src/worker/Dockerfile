@@ -1,16 +1,7 @@
-# CHANGE THIS TO PYTHON IMAGE -> 3.7, choose the latest one. whatever is longest maintained.
-FROM ubuntu:latest
+FROM python:3.6
 
-# Install Python dependencies
+# Install Docker dependencies
 RUN apt-get update
-RUN apt-get --assume-yes install python3.6 ; update-alternatives --install /usr/bin/python3 \
-    python3 /usr/bin/python3.6 1
-RUN apt --assume-yes install python3-pip
-COPY requirements.txt /titb/src/requirements.txt
-WORKDIR /titb/src/
-RUN pip3 install -r requirements.txt
-RUN rm requirements.txt
-
 RUN apt --assume-yes install docker.io
 RUN apt install sudo
 
@@ -18,12 +9,9 @@ RUN apt install sudo
 RUN useradd -r worker
 RUN echo "worker ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-ARG environment
-ARG python_runner
-ARG klee_environment_path
-ARG worker_path=/titb/src/worker
-COPY ${environment} ${klee_environment_path}
-COPY . ${worker_path}
-COPY ${python_runner} ${worker_path}/${python_runner}
+COPY requirements.txt /titb/src/requirements.txt
+WORKDIR /titb/src/
+RUN pip install -r requirements.txt
+RUN rm requirements.txt
 
-USER worker
+CMD /src/python_runner.sh celery -A worker.worker worker
