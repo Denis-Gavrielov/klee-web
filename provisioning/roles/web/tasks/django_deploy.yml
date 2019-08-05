@@ -8,3 +8,9 @@
       - name: "{{ container_network }}"
     volumes:
       - /tmp:/tmp
+      # source code folders:
+      - "{{ application_dir }}:{{ application_dir }}"
+      - "{{ code_dir }}/worker:{{ code_dir }}/worker"
+      # files for secrets and environmental variables:
+      - "{{ admin_ps_dir }}/admin_psw.sh:{{ admin_ps_dir }}/admin_psw.sh"
+      - "{{ klee_web_env }}:{{ klee_web_env }}"

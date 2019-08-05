@@ -29,7 +29,7 @@ RUN npm install grunt-contrib-uglify
 RUN npm install -g bower
 COPY ./klee_web/.bowerrc ./klee_web/Gruntfile.js ./klee_web/bower.json ./klee_web/package.json \
      ./klee_web/package-lock.json ./klee_web/requirements.txt /titb/
-COPY ./klee_web /titb/src/klee_web
+
 RUN npm install 
 RUN apt install -y ruby-full
 RUN gem install sass
@@ -40,9 +40,6 @@ RUN pip install -r /titb/requirements.txt
 # NOTE: these differ between ci and no ci
 RUN bower install --config.interactive=false --allow-root
 RUN grunt
-COPY ./klee_web/admin_psw.sh /src/web/admin_psw.sh
-COPY ./klee_web/klee-web-environment.sh /etc/profile.d/klee-web-environment.sh
-COPY ./worker /titb/src/worker
 
 CMD . /etc/profile.d/klee-web-environment.sh && cd /titb/src/klee_web && \
     python manage.py migrate --noinput && \
