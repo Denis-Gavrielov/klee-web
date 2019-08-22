@@ -1,7 +1,7 @@
 ---
 - name: Start docker Worker
   docker_container:
-    name: worker_1
+    name: "worker-{{ item }}"
     image: celery_worker
     restart_policy: always
     volumes: 
@@ -15,3 +15,4 @@
     - "{{ worker_dir }}:{{ worker_dir }}"
     network_mode: "{{ 'host' if (ci) else 'bridge' }}"
     recreate: yes
+  loop: "{{ list_of_workers }}"
