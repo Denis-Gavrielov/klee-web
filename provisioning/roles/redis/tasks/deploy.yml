@@ -6,3 +6,4 @@
     restart_policy: always
     networks: 
       - name: "{{ container_network }}"
+    recreate: yes

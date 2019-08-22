@@ -16,3 +16,4 @@
       - postgres_data:/var/lib/postgresql/data/
     networks:
       - name: "{{ container_network }}"
+    recreate: yes

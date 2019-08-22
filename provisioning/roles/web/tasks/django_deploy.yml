@@ -19,3 +19,4 @@
       # files for secrets and environmental variables:
       - "{{ admin_ps_dir }}/admin_psw.sh:{{ admin_ps_dir }}/admin_psw.sh"
       - "{{ klee_web_env }}:{{ klee_web_env }}"
+    recreate: yes

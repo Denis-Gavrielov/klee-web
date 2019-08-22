@@ -10,3 +10,4 @@
       - "80:80"
     volumes:
       - /tmp:/tmp
+    recreate: yes
