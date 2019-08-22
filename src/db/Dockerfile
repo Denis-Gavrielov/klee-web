@@ -1,4 +1,4 @@
-FROM postgres:9.5-alpine
+FROM postgres:11-alpine
 
 COPY ./postgresql.conf postgres.conf
 COPY ./pg_hba.conf /etc/postgresql/9.5/main/pg_hba.conf
