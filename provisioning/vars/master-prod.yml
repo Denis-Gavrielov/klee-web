@@ -1,0 +1,5 @@
+development: yes
+prod: yes  # should be able to delete this
+
+redis_host: kleeweb-redis  # make this a variable
+webpage: django_app  # make this a variable

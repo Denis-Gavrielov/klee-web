@@ -1,11 +1,17 @@
-[dbservers]
-klee.doc.ic.ac.uk
+[master]
+cloud-vm-41-210.doc.ic.ac.uk:22
 
-[redisservers]
-klee.doc.ic.ac.uk
+[worker]
+cloud-vm-40-70.doc.ic.ac.uk:22
+cloud-vm-41-188.doc.ic.ac.uk
 
-[webservers]
-klee.doc.ic.ac.uk
+[testing]
+cloud-vm-41-189.doc.ic.ac.uk:22
 
-[workers]
-klee.doc.ic.ac.uk
+[all:children]
+master
+worker
+testing
+
+[all:vars]
+ansible_ssh_user=dg3718

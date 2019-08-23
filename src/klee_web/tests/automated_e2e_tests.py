@@ -12,8 +12,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 
-# TODO: do not hardcode the web server
-WEBPAGE = "192.168.33.10"
+WEBPAGE = os.environ['MAIN_WEBPAGE']
 
 
 def add_attachment(filename: str):

@@ -18,4 +18,5 @@
     minute: "0"
     hour: "14"
     job: "python3 /titb/src/klee_web/tests/automated_e2e_tests.py"
-    user: "vagrant"  # THIS LIKELY NEEDS TO CHANGE WHEN PRODUCTION
+    user: "{{ 'dg3718' if (prod is defined) else 'vagrant' }}"
+  when: not ci  # maybe: ci is not defined

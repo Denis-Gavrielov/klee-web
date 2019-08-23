@@ -39,6 +39,7 @@ if DEBUG:
     k = [random.SystemRandom().choice(string.ascii_letters + string.digits)
          for _ in range(50)]
     key = ''.join(k)
+    key = 12345678901234567890123456789012345678901234567890  # TODO: delete this line!
 
 SECRET_KEY = key if DEBUG else os.environ.get("DJANGO_SECRET_KEY")
 

@@ -1,3 +1,4 @@
+---
 - hosts: all
   remote_user: vagrant
   become: yes
@@ -5,7 +6,7 @@
     pip_install_packages:
       - name: docker
   vars_files:
-    - vars/development.yml
+    - vars/worker-prod.yml
     - vars/common.yml
   roles:
     - init
@@ -16,28 +17,38 @@
       pip_package: python3-pip
       pip_executable: pip3
     - role: geerlingguy.docker
-      when: not ci
-    - common
+      # when: not ci
 
-- hosts: "{{ 'all' if (ci|bool) else 'master' }}"
+- hosts: master
   remote_user: vagrant
   become: yes
   vars_files:
-    - vars/development.yml
+    - vars/master-prod.yml
     - vars/common.yml
   roles:
+    - common
     - redis
     - db
     - web
 
-- hosts: "{{ 'all' if (ci|bool) else 'worker' }}"
+- hosts: worker
   remote_user: vagrant
   become: yes
+  vars_files:
+    - vars/worker-prod.yml
+    - vars/common.yml
   roles:
+    - common
     - worker
 
-- hosts: "{{ 'all' if (ci|bool) else 'testing' }}"
+- hosts: testing
   remote_user: vagrant
   become: yes
+  vars_files:
+    - vars/worker-prod.yml
+    - vars/common.yml
+  # environment:
+  #   main_webpage: "{{ hostvars[groups['master'][0]]['ansible_' + iface].ipv4.address }}"
   roles:
+    - common
     - e2e-tests

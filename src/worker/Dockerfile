@@ -14,4 +14,4 @@ WORKDIR /titb/src/
 RUN pip install -r requirements.txt
 RUN rm requirements.txt
 
-CMD /src/python_runner.sh celery -A worker.worker worker
+CMD /src/python_runner.sh celery -l DEBUG -A worker.worker worker
