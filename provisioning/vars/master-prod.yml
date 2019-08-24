@@ -1,4 +1,4 @@
-development: yes
+development: no
 prod: yes  # should be able to delete this
 
 redis_host: kleeweb-redis  # make this a variable
