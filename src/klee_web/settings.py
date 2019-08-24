@@ -29,7 +29,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, ".."))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEVELOPMENT") is not None
-DEBUG = False
+# DEBUG = False
 
 # If we're in debug mode, generate a random key
 # so that we don't need to provide one
@@ -43,7 +43,7 @@ if DEBUG:
     key = 12345678901234567890123456789012345678901234567890  # TODO: delete this line!
 
 SECRET_KEY = key if DEBUG else os.environ.get("DJANGO_SECRET_KEY")
-
+DEBUG = False
 ALLOWED_HOSTS = ['*']
 
 TEMPLATES = [
