@@ -12,4 +12,3 @@
   become: yes
   become_user: klide
   when: not development
-  # when: prod is defined  # delete this and keep "not development"
