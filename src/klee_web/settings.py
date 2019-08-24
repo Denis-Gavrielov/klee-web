@@ -43,7 +43,7 @@ if DEBUG:
     key = 12345678901234567890123456789012345678901234567890  # TODO: delete this line!
 
 SECRET_KEY = key if DEBUG else os.environ.get("DJANGO_SECRET_KEY")
-DEBUG = False
+# DEBUG = False
 ALLOWED_HOSTS = ['*', 'localhost', '172.18.0.5', '172.18.0.4']
 
 TEMPLATES = [
