@@ -13,7 +13,8 @@ from email.mime.multipart import MIMEMultipart
 
 
 WEBPAGE = os.environ['MAIN_WEBPAGE']
-
+DEVELOPMENT = os.environ['DEVELOPMENT'] is not None
+PASSWORD = os.environ['GMAIL_PASSWORD']
 
 def add_attachment(filename: str):
     """
@@ -74,6 +75,9 @@ message.attach(MIMEText(body, "plain"))
 message.attach(add_attachment(home + "/e2e_report_stdout.txt"))
 message.attach(add_attachment(home + "/e2e_report_stderr.txt"))
 
-with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
-    server.login(sender_email, password)
-    server.sendmail(sender_email, receiver_email, message.as_string())
+if not DEVELOPMENT:
+    with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
+        server.login(sender_email, password)
+        server.sendmail(sender_email, receiver_email, message.as_string())
+
+print('Results have been placed into the home directory')
