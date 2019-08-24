@@ -1,9 +1,8 @@
-main_webpage: "{{ redis_host if (webpage is undefined) else webpage }}"
+main_webpage: "{{ redis_host if (main_webpage is undefined) else main_webpage }}"
+development: "{{ 'no' if (development is undefined) else development }}"
 # TEST IF I CAN SAY: (main_webpage is undefined)
 redis_port: 6379
 redis_db_number: 0
 celery_broker_url: "redis://{{ redis_host }}:{{ redis_port }}/{{ redis_db_number }}"
-# db_password: development
-# admin_password: development
 db_host: postgres_container
 db_port: 5432
