@@ -10,15 +10,15 @@
     - vars/worker-prod.yml
     - vars/common.yml
   roles:
-    - init
-    # Need to install Python2 as well for Docker dependencies.
-    - role: geerlingguy.pip
-      pip_package: python-pip
-    - role: geerlingguy.pip
-      pip_package: python3-pip
-      pip_executable: pip3
-    - role: geerlingguy.docker
-      # when: not ci
+    # - init
+    # # Need to install Python2 as well for Docker dependencies.
+    # - role: geerlingguy.pip
+    #   pip_package: python-pip
+    # - role: geerlingguy.pip
+    #   pip_package: python3-pip
+    #   pip_executable: pip3
+    # - role: geerlingguy.docker
+    #   # when: not ci
 
 - hosts: master
   remote_user: vagrant
