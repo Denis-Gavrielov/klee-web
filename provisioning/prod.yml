@@ -6,6 +6,7 @@
     pip_install_packages:
       - name: docker
   vars_files:
+    - vars/secrets.yml
     - vars/worker-prod.yml
     - vars/common.yml
   roles:
@@ -23,6 +24,7 @@
   remote_user: vagrant
   become: yes
   vars_files:
+    - vars/secrets.yml
     - vars/master-prod.yml
     - vars/common.yml
   roles:
@@ -35,6 +37,7 @@
   remote_user: vagrant
   become: yes
   vars_files:
+    - vars/secrets.yml
     - vars/worker-prod.yml
     - vars/common.yml
   roles:
@@ -45,6 +48,7 @@
   remote_user: vagrant
   become: yes
   vars_files:
+    - vars/secrets.yml
     - vars/worker-prod.yml
     - vars/common.yml
   # environment:
