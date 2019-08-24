@@ -29,6 +29,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, ".."))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEVELOPMENT") is not None
+DEBUG = False
 
 # If we're in debug mode, generate a random key
 # so that we don't need to provide one
