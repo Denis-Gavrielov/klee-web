@@ -12,9 +12,9 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 
-WEBPAGE = os.environ['MAIN_WEBPAGE']
-DEVELOPMENT = os.environ['DEVELOPMENT'] is not None
-PASSWORD = os.environ['GMAIL_PASSWORD']
+WEBPAGE = os.environ.get('MAIN_WEBPAGE')
+DEVELOPMENT = os.environ.get('DEVELOPMENT') is not None
+PASSWORD = os.environ.get('GMAIL_PASSWORD')
 
 def add_attachment(filename: str):
     """
@@ -79,5 +79,5 @@ if not DEVELOPMENT:
     with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
         server.login(sender_email, password)
         server.sendmail(sender_email, receiver_email, message.as_string())
-
-print('Results have been placed into the home directory')
+else:
+    print('Results have been placed into the home directory')

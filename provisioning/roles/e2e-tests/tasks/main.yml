@@ -15,8 +15,8 @@
 - name: Add cronjob for automated tests daily at 2pm
   cron:
     name: "Test Klee Web"
-    minute: "0"
-    hour: "14"
-    job: "python3 /titb/src/klee_web/tests/automated_e2e_tests.py"
-    user: "{{ 'dg3718' if (prod is defined) else 'vagrant' }}"
+    minute: "5"
+    hour: "22"
+    job: "/src/python_runner.sh /usr/bin/python3 /titb/src/klee_web/tests/automated_e2e_tests.py"
+    user: "{{ 'dg3718' if (not development) else 'vagrant' }}"
   when: not ci  # maybe: ci is not defined

@@ -2,6 +2,12 @@ const puppeteer = require('puppeteer');
 
 jest.setTimeout(40000);
 var WEBPAGE = process.env.WEBPAGE;
+var ADMIN_PASSWORD;
+if (process.env.DEVELOPMENT) {
+  ADMIN_PASSWORD = 'development';
+} else {
+  ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+}
 
 describe('Input', () => {
   beforeAll(async () => {
