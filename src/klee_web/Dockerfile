@@ -42,7 +42,7 @@ RUN bower install --config.interactive=false --allow-root
 RUN grunt
 
 CMD rm -rf ./src/klee_web/geoip/ && \
-    mv -f ./geoip/ ./src/klee_web/ && \
+    cp -r -f ./geoip/ ./src/klee_web/ && \
     . /etc/profile.d/klee-web-environment.sh && cd /titb/src/klee_web && \
     python manage.py migrate --noinput && \
     python manage.py collectstatic --noinput && \
