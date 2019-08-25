@@ -18,7 +18,6 @@
       pip_package: python3-pip
       pip_executable: pip3
     - role: geerlingguy.docker
-      # when: not ci
 
 - hosts: master
   remote_user: vagrant

@@ -39,5 +39,7 @@
 - hosts: "{{ 'all' if (ci|bool) else 'testing' }}"
   remote_user: vagrant
   become: yes
+  vars_files:
+    - vars/development.yml
   roles:
     - e2e-tests
