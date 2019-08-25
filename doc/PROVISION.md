@@ -1,4 +1,4 @@
-Deployment to DoC Cloud
+Provisioning
 ==========
 
 ## VM Creation
@@ -11,8 +11,8 @@ Create a new instance with the following details:
 
 ##### Note: RAM size can vary
 
-After the instance has been created correctly, note the hostname
-It will be in a format like cloud-vm-XX-YY.doc.ic.ac.uk
+After the instance has been created correctly, note the hostname <br>
+It will be in a format like cloud-vm-XX-YY.doc.ic.ac.uk <br>
 Where XX and YY are the penultimate and ultimate bytes of the IP address.
 
 ## VM Setup
