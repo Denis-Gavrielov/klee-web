@@ -60,7 +60,7 @@ message = MIMEMultipart("alternative")
 
 message["Subject"] = status + "KLEE testing report"
 message["From"] = sender_email
-message["To"] = receivers_email
+message["To"] = ', '.join(receivers_email)
 
 body = "Hi,\n\n" + msg + \
        " Please note that all the tests are running from a VM within the" + \
