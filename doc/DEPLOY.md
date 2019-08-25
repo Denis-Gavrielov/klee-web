@@ -17,24 +17,36 @@ Where XX and YY are the penultimate and ultimate bytes of the IP address.
 
 ## VM Setup
 
-* SSH into the VM from the Cloudstack console
-* Create a user named Ubuntu
-```bash
-adduser --ingroup sudo ubuntu
-```
-* Login ubuntu and add your SSH key to ease the login process for ansible
+* SSH into each VM from the Cloudstack console
+* Add your SSH key to ease the login process for Ansible (you can use a guide like [this](https://www.ssh.com/ssh/copy-id) to add the SSH key)
 * Run `sudo visudo` and replace
-```%sudo ALL=NOPASSWD: ALL```
+```%sudo   ALL=(ALL:ALL) ALL```
 with
-```%sudo ALL=(ALL) NOPASSWD: ALL```
+```%sudo   ALL=(ALL:ALL) NOPASSWD: ALL```
 ##### Note: This step is done to allow sudoers to become other users without asking for password
 
 ## Deployment
 * Open the file provisioning/hosts
 * Add the VM hostname to all the roles you wish to be deployed on the VM in this format
-```cloud-vm-XX-YY.doc.ic.ac.uk:22 ansible_ssh_user=ubuntu```
+```cloud-vm-XX-YY.doc.ic.ac.uk```
+    * There should be only one hostname for the `master` and `testing` group, and at least one for the `worker` group.
+* Add your imperial username as the Ansible ssh user
+```bash
+[all:vars]
+# Change the user below to your imperial account
+ansible_ssh_user=<your username>
+```
 * Run
 ```bash
 ansible-galaxy install -r ./requirements.yml -f
 ansible-playbook -i provisioning/hosts --vault-password-file=~/.klee_vault_password provisioning/production.yml -v
 ```
+
+A more detailed introduction to how Ansible works is described in the `Ansible.md` file.
+
+## Adding Workers
+If the service becomes slow to respond you can add additional Workers. To do so 
+* aquire a new VM from the DoC Cloud 
+* set it up as in the steps above 
+* add the new address to the provisioning/hosts file
+* Reprovision the VMs with the above command.
