@@ -36,7 +36,7 @@ def add_attachment(filename: str):
     )
     return part
 
-# TODO: add the right env variables in here, but also make sure that it works then in circle CI and DEV, PROD
+
 e2e = "sudo docker run --rm -e WEBPAGE=" + WEBPAGE + \
       " -e ADMIN_PASSWORD=" + ADMIN_PASSWORD + \
       " --network $(sudo docker network ls | grep bridge | sed -n '2 p' " + \
