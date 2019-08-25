@@ -15,4 +15,4 @@
     - "{{ worker_dir }}:{{ worker_dir }}"
     network_mode: "{{ 'host' if (ci) else 'bridge' }}"
     recreate: yes
-  loop: "{{ list_of_workers }}"
+  with_sequence: start=1 end=2
