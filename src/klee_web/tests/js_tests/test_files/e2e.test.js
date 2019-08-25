@@ -2,12 +2,17 @@ const puppeteer = require('puppeteer');
 
 jest.setTimeout(40000);
 var WEBPAGE = process.env.WEBPAGE;
-var ADMIN_PASSWORD;
-if (process.env.DEVELOPMENT) {
+var ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+if (ADMIN_PASSWORD == null) {
   ADMIN_PASSWORD = 'development';
-} else {
-  ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 }
+
+// if (process.env.DEVELOPMENT) {
+//   ADMIN_PASSWORD = 'development';
+// } else {
+//   ADMIN_PASSWORD = String(process.env.ADMIN_PASSWORD);
+//   console.log(typeof ADMIN_PASSWORD);
+// }
 
 describe('Input', () => {
   beforeAll(async () => {
@@ -37,7 +42,7 @@ describe('Admin', () => {
     await page.goto('http://' + WEBPAGE + '/admin');
     await page.waitForSelector('#id_username');
     await page.type('#id_username', 'admin');
-    await page.type('#id_password', 'development');
+    await page.type('#id_password', ADMIN_PASSWORD);
     await Promise.all([page.click('[type=submit]'), page.waitForNavigation()]);
   });
   it('tests that the admin can login', async () => {
@@ -52,7 +57,7 @@ describe('New Projects', () => {
     await page.goto('http://' + WEBPAGE + '/user/logout');
     await page.goto('http://' + WEBPAGE + '/user/login');
     await page.type('[type=text]', 'admin');
-    await page.type('[type=password]', 'development');
+    await page.type('[type=password]', ADMIN_PASSWORD);
     await Promise.all([page.click('[type=submit]'), page.waitForNavigation()]);
   });
   it('tests that logged users can add new projects', async () => {

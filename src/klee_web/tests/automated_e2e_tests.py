@@ -13,8 +13,8 @@ from email.mime.multipart import MIMEMultipart
 
 
 WEBPAGE = os.environ.get('MAIN_WEBPAGE')
-# DEVELOPMENT = os.environ.get('DEVELOPMENT') is not None
-password = os.environ.get('GMAIL_PASSWORD')  # Keep this as a secret
+ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD')
+password = os.environ.get('GMAIL_PASSWORD')
 sender_email = "klee.tests@gmail.com"
 receivers_email = ["denis.gavrielov18@ic.ac.uk"]
 
@@ -38,6 +38,7 @@ def add_attachment(filename: str):
 
 # TODO: add the right env variables in here, but also make sure that it works then in circle CI and DEV, PROD
 e2e = "sudo docker run --rm -e WEBPAGE=" + WEBPAGE + \
+      " -e ADMIN_PASSWORD=" + ADMIN_PASSWORD + \
       " --network $(sudo docker network ls | grep bridge | sed -n '2 p' " + \
       "| awk '{print $2}') -v /titb/src/klee_web/tests/js_tests/" + \
       "test_files/:/titb/src/klee_web/tests/js_tests/test_files/ " + \
