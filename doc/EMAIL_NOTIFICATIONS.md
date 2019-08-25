@@ -53,3 +53,24 @@ To update the configuration of the cron job the provisioning has to be updated. 
 For example, you can change the hour setting to receive the email at a different time of the day. Other options can be explored from the [official Ansible cron documentation](https://docs.ansible.com/ansible/latest/modules/cron_module.html).
 
 Finally, provision the testing machine as illustrated in the DEPLOY.md file.
+
+
+Continuous Website Availability Alerts
+=========
+The test reports are essential to check the functionality of the website. However, they are designed to inform the maintainer of the website only once a day. To get more up-to-date alerts a monitoring service was set up. 
+
+**UptimeRobot** is a free monitoring service which pings the web address every 5 minutes and sends an email alert if the site did not respond. It then pings the site every 5 minutes again and sends an email update once the site responds again. 
+
+Again, this does not test if the website functionalities are working as expected, but it does check the status of the website overall.
+
+To add or remove yourself from the email list, you need to first obtain the password for the account with:
+
+```bash
+ansible-vault view --vault-password-file=~/.klee_vault_password provisioning/vars/secrets.yml
+```
+
+Get the `uptimerobot_password`. Visit https://uptimerobot.com/ and log in with the email address `klee.tests@gmail.com` and the password from the Ansible Vault file. 
+
+Under `My Settings` you can add or remove Alert Contacts by simply adding the email address onto which you want to receive the emails for.
+
+Here you also have a dashboard to check the availability of the web server for up to the past 30 days.

@@ -23,7 +23,7 @@ The Ansible Playbook that is being used to provision the machines is specified h
     ansible.playbook          = "provisioning/vagrant.yml"
 ```
 
-It is also possible to use a different playbook for provisioning. Provisioning is further explained in the ANSIBLE.md file.
+It is also possible to use a different playbook for provisioning.
 
 ## Reprovisioning After Changes to the Code
 TODO: mention the deploy_container tags
