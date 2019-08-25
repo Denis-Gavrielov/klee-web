@@ -14,7 +14,8 @@ from email.mime.multipart import MIMEMultipart
 
 WEBPAGE = os.environ.get('MAIN_WEBPAGE')
 DEVELOPMENT = os.environ.get('DEVELOPMENT') is not None
-PASSWORD = os.environ.get('GMAIL_PASSWORD')
+
+
 
 def add_attachment(filename: str):
     """
@@ -33,7 +34,7 @@ def add_attachment(filename: str):
     )
     return part
 
-
+# TODO: add the right env variables in here, but also make sure that it works then in circle CI and DEV, PROD
 e2e = "sudo docker run --rm -e WEBPAGE=" + WEBPAGE + \
       " --network $(sudo docker network ls | grep bridge | sed -n '2 p' " + \
       "| awk '{print $2}') -v /titb/src/klee_web/tests/js_tests/" + \
@@ -49,7 +50,7 @@ else:
     msg = "All end-to-end tests ran fine."
 
 port = 465  # For SSL
-password = "testingemails"  # Keep this as a secret
+password = os.environ.get('GMAIL_PASSWORD')  # Keep this as a secret
 
 # Create a secure SSL context
 context = ssl.create_default_context()
