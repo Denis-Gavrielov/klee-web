@@ -13,8 +13,10 @@ from email.mime.multipart import MIMEMultipart
 
 
 WEBPAGE = os.environ.get('MAIN_WEBPAGE')
-DEVELOPMENT = os.environ.get('DEVELOPMENT') is not None
-
+# DEVELOPMENT = os.environ.get('DEVELOPMENT') is not None
+password = os.environ.get('GMAIL_PASSWORD')  # Keep this as a secret
+sender_email = "klee.tests@gmail.com"
+receivers_email = ["denis.gavrielov18@ic.ac.uk"]
 
 
 def add_attachment(filename: str):
@@ -50,18 +52,14 @@ else:
     msg = "All end-to-end tests ran fine."
 
 port = 465  # For SSL
-password = os.environ.get('GMAIL_PASSWORD')  # Keep this as a secret
-
 # Create a secure SSL context
 context = ssl.create_default_context()
-sender_email = "klee.tests@gmail.com"
-receiver_email = "denis.gavrielov18@ic.ac.uk"
 
 message = MIMEMultipart("alternative")
 
 message["Subject"] = status + "KLEE testing report"
 message["From"] = sender_email
-message["To"] = receiver_email
+message["To"] = receivers_email
 
 body = "Hi,\n\n" + msg + \
        " Please note that all the tests are running from a VM within the" + \
@@ -76,9 +74,9 @@ message.attach(MIMEText(body, "plain"))
 message.attach(add_attachment(home + "/e2e_report_stdout.txt"))
 message.attach(add_attachment(home + "/e2e_report_stderr.txt"))
 
-if not DEVELOPMENT:
+if os.environ.get('DEVELOPMENT') is None:
     with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
         server.login(sender_email, password)
-        server.sendmail(sender_email, receiver_email, message.as_string())
+        server.sendmail(sender_email, receivers_email, message.as_string())
 else:
     print('Results have been placed into the home directory')
