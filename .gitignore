@@ -19,3 +19,6 @@ src/geoip/
 ubuntu-xenial*.log
 .vscode/
 note*.txt
+src/klee_web/static/*
+src/static/*
+src/klee_web/frontend/static/frontend/dist
