@@ -27,4 +27,4 @@ _Run "Running Flake8 against Python Code" "sudo docker run --rm -it -v /titb/:/t
 
 _Run "Checking that loading the homepage returns 200 OK" "sudo docker run --rm -it -e WEBPAGE=$MAIN_WEBPAGE --network $(sudo docker network ls | grep bridge | sed -n '2 p' | awk '{print $2}') -v /titb/src/klee_web/tests/python_tests/:/titb/src/klee_web/tests/python_tests/ e2e_test /bin/bash /titb/src/klee_web/tests/python_tests/webserver_test.sh "
 
-_Run "JavaScript e2e tests" "sudo docker run --rm -it -e WEBPAGE=$MAIN_WEBPAGE --network $(sudo docker network ls | grep bridge | sed -n '2 p' | awk '{print $2}') -v /titb/src/klee_web/tests/js_tests/test_files/:/titb/src/klee_web/tests/js_tests/test_files/ e2e_test_js"
+_Run "JavaScript e2e tests" "sudo docker run --rm -it -e WEBPAGE=$MAIN_WEBPAGE -e ADMIN_PASSWORD=$ADMIN_PASSWORD --network $(sudo docker network ls | grep bridge | sed -n '2 p' | awk '{print $2}') -v /titb/src/klee_web/tests/js_tests/test_files/:/titb/src/klee_web/tests/js_tests/test_files/ e2e_test_js"
