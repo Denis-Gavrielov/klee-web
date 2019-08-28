@@ -38,10 +38,12 @@ RUN gem install sass
 RUN pip install -r /titb/requirements.txt
 
 # NOTE: these differ between ci and no ci
-RUN bower install --config.interactive=false --allow-root
-RUN grunt
+# RUN bower install --config.interactive=false --allow-root
+# RUN grunt
 
-CMD rm -rf ./src/klee_web/geoip/ && \
+CMD bower install --config.interactive=false --allow-root && \
+    grunt && \
+    rm -rf ./src/klee_web/geoip/ && \
     cp -r -f ./geoip/ ./src/klee_web/ && \
     . /etc/profile.d/klee-web-environment.sh && cd /titb/src/klee_web && \
     python manage.py migrate --noinput && \
