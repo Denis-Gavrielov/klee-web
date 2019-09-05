@@ -4,7 +4,7 @@
 iface: '{{ ansible_default_ipv4.interface }}'
 private_iface: 'eth1'
 # Change this repo if need to provision for production from differen klee-web forks
-git_repo: https://github.com/Denis-Gavrielov/klee-web/tree/dockerize_debug
+git_repo: https://github.com/Denis-Gavrielov/klee-web.git
 src_dir: /titb
 code_dir: "{{ src_dir }}/src"
 application_dir: "{{ code_dir }}/klee_web"
